@@ -37,3 +37,7 @@ def userprofile(request):
 
 def settings(request):
     return render(request, 'settings.html')
+
+
+def attendance(request):
+    return render(request, 'attendance.html')

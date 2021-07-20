@@ -13,5 +13,6 @@ urlpatterns = [
     path('leavedetail/', views.leavedetail),
     path('userprofile/', views.userprofile),
     path('settings/', views.settings),
+    path('attendance/', views.attendance),
 
 ]
