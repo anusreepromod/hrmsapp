@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="page-header" style="padding-top: 90px;">
+        
+        <div style="text-align: right;padding-right: 20px;">
+            <div class="btn-group">
+                <span class="btn addButtons">
+                    <a class="btn btn-primary" href="/user/applyleave/" role="button">Apply leave</a>
+                </span>
+                
+            </div>
+        </div>
+   
+</div>
+
+<div class="row" style="padding-top:30px;padding-right:30px;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Leave Application</h4>
+            </div>
+            <div class="card-body dash-card-body">
+                <div class="table-responsive">
+                    <table class="table  mb-0">
+                        <thead>
+                        <tr>
+                            <th>Leave Category</th>
+                            <th>Date Range</th>
+                            <th>No.of leaves</th>
+                            <th>Reason</th>
+                            <th>status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sick leave</td>
+                                <td>July 20, 2021</td>
+                                <td>1</td>
+                                <td>Sick</td>
+                                <td>Approved</td>
+                            </tr>
+                             <tr>
+                                <td>Annual leave</td>
+                                <td>July 30, 2021</td>
+                                <td>1</td>
+                                <td>Personal</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td>Annual leave</td>
+                                <td>Aug 2, 2021</td>
+                                <td>2</td>
+                                <td>Travelling to hometown</td>
+                                <td>Pending</td>
+                            </tr>
+                             </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock %}

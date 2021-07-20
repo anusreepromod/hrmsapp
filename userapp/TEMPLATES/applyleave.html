@@ -1,0 +1,128 @@
+{% extends "master.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="row" style="padding-top: 100px;">
+    <div class="col-md-12">
+        <div class="widget box">
+            <div class="widget-header">
+                <div class="headingOftabel">
+                    <h4>
+                    Leave Application
+                    </h4>
+                    <hr>
+                </div>
+           
+               
+            </div>
+            <div class="widget-content">
+                <form method="post" class="form-horizontal row-border">
+                    <div class="row"> 
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <label class="col-md-12 control-label">
+                                        Employee Name :
+                                    </label>
+                                    <div class="col-md-12 control-label textLeft ">
+                                        <label class="text" >Anu</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Leaves :
+                                    </label>
+                                    <div class="col-md-12 control-label textLeft">
+                                        <label >12 (Total Leaves) - 18 (Used Leaves) = -6 (Left Leaves)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Leave Category <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <select  class="form-control input-width-xlarge">
+<option value="">-- Select --</option>
+<option value="1">Annual Leave</option>
+<option value="2">Emergancy Leave</option>
+<option value="3">Normal Leave</option>
+<option value="4">Others</option>
+<option value="5">Planned Leave</option>
+<option value="6">Sick Leave</option>
+<option value="7">Un-planned Leave</option>
+
+</select>
+                                        <span id="cphBody_rfvLeaveCategory" class="required" style="display:none;">Please select Leave Category.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Start Date - End Date
+                                    </label>
+                                    <div class="col-md-12 date-select">
+                                        <input  type="text"  class="form-control input-width-xlarge txtDateRange" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Consider Half Leave
+                                    </label>
+                                    <div class="col-md-12">
+                                        <label class="checkbox-inline">
+                                            <input id="cphBody_chkStartDateHalfLeave" type="checkbox"  /><label >Half Day Leave</label>
+                                        </label>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Total Leave <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input  type="text" maxlength="6"  />
+                                        <span  style="display:none;">Please enter Total Leave.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        Reason <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <textarea  rows="2" cols="20"  class="form-control input-width-xlarge">
+</textarea>
+                                        <span  style="display:none;">Please enter Reason.</span>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                    <div class="form-actions formActionbtn" style="padding-left: 15px;">
+                       
+                        <!-- <input type="submit" name="" value="Save"  class="btn btn-success" />
+                         <a href="" class="btn btn-danger">Cancel
+                        </a> -->
+                        <a class="btn btn-success" href="#" role="button">Save</a>
+                        <a class="btn btn-danger" href="#" role="button">Cancel</a>
+                    </div>
+
+{% endblock %}
