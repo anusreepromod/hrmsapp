@@ -1,0 +1,91 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<div class="page-content" style="padding-top: 100px;padding-right: 50px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Employee
+</h5>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+    <div class="btn-group">
+        <span class="btn addButtons">
+            <a class="btn btn-primary" href="/adminapp/addstaff/" role="button"> <i class="fa fa-plus">Add</i></a>
+        </span> 
+    </div>
+            </div>
+        </div>
+    </div><br>
+        <div class="row">
+<div class="col-12">
+    <div class="card">
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table  mb-0 dataTable">
+                    <thead>
+                    <tr>
+                        <th>Emp ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th width='25%'>Date Of Joining</th>
+                        <th width="25%">Action</th>
+                                                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="Id">#ABC001</td>
+                            <td >Anu</td>
+                            <td>anu@abcdsoftware.com</td>
+                            <td >Python</td>
+                            <td >Developer</td>
+                            <td >Mar 4, 2020</td>
+                            <td>
+                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="fas fa-trash"></i></a>
+                            </td>
+                           </tr>
+                           <tr>
+                            <td class="Id">#ABC002</td>
+                            <td >Thanmay</td>
+                            <td>thanmay@abcdsoftware.com</td>
+                            <td >Python</td>
+                            <td >Developer</td>
+                            <td >Mar 4, 2020</td>
+                            <td>
+                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="fas fa-trash"></i></a>
+                            </td>
+                           </tr>
+                           <tr>
+                            <td class="Id">#ABC003</td>
+                            <td >Vismay</td>
+                            <td>vismay@abcdsoftware.com</td>
+                            <td >Python</td>
+                            <td >Developer</td>
+                            <td >Mar 4, 2020</td>
+                            <td>
+                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="fas fa-trash"></i></a>
+                            </td>
+                           </tr>
+                          
+                       </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}

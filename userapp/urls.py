@@ -14,5 +14,6 @@ urlpatterns = [
     path('userprofile/', views.userprofile),
     path('settings/', views.settings),
     path('attendance/', views.attendance),
+    path('holiday/', views.holiday),
 
 ]

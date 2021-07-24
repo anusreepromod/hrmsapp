@@ -41,3 +41,7 @@ def settings(request):
 
 def attendance(request):
     return render(request, 'attendance.html')
+
+
+def holiday(request):
+    return render(request, 'holidaylist.html')

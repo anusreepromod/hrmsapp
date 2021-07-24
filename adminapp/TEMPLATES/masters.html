@@ -11,8 +11,9 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-
-    <title>ABCD Software</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <title>ABCD Software</title>
 
 </head>
 
@@ -20,10 +21,11 @@
     <!-- navbar -->
     <div class="row">
         <div class="col-lg-12">
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
                 <a class="navbar-brand" href="#">ABCD Software</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#sidebarmenu" aria-controls="sidebarmenu" aria-expanded="false"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -32,10 +34,12 @@
                     <ul class="navbar-nav ml-auto">
                         <form class="navbar-form">
                             <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                </button>
+                                <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>
                             </div>
                         </form>
                         <li class="nav-item dropdown">
@@ -62,8 +66,7 @@
                                 </p>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                <a class="dropdown-item" href="/user/userprofile/">Profile</a>
-                                <a class="dropdown-item" href="/user/settings/">Settings</a>
+                                <a class="dropdown-item" href="">Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Log out</a>
                             </div>
@@ -77,39 +80,80 @@
     <!-- end of navbar -->
     <!-- Vertical navbar -->
     <div class="row">
-        <div class="col-md-3 col-lg-2 d-md-block vh-100 ">
-            <nav id= "sidebarmenu" class="navbar navbar-light bg-light sidebar collapse " style="padding-top: 85px;">
+        <div class="col-lg-3 col-sm-3 col-xs-3 col-12 vh-100% ">
+            <nav class="navbar navbar-light bg-light ml-0" style="position: fixed;padding-top: 85px;">
                 <div class="wrapper">
                     <div class="sidebar">
-                        <div class='sidebar-fixed'> 
+                        <div class='sidebar-wrapper'> 
                             <ul class="navbar-nav" style="height: 800px; width:200px;">
                             
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="/user/dashboard/">
+                                    <a class="nav-link" href="">
                                         <i class="material-icons">dashboard</i>
                                         Dashboard
                                     </a>
                                 </li><br>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="/user/editprofile/">
-                                        <i class="material-icons">person</i>
-                                        Edit Profile
+                                    <a class="nav-link" href="/adminapp/employee/">
+                                        <i class="material-icons">badge</i>
+                                        Employees
                                     </a>
                                 </li><br>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="/user/leave/">
+                                    <a class="nav-link" href="/adminapp/manageleave/">
                                         <i class="material-icons">content_paste</i>
-                                        Leave Application
+                                        Manage Leave
                                     </a>
                                 </li><br>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="/user/attendance/">
-                                        <i class="material-icons">calendar_view_month</i>     
-                                        Attendance Details
+                                    <a class="nav-link" href="/adminapp/attendance/">
+                                        <i class="material-icons">sports_score</i>
+                                        Attendance
                                     </a>
                                 </li><br>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="/user/notification/">
+                                    <a class="nav-link" href="">
+                                        <i class="fas fa-cube"></i>     
+                                        Appraisal
+                                    </a>
+                                </li><br>
+                                <li class="nav-item ">
+                                    <a class="nav-link collapsed"
+                           href="#navbar-hr" data-toggle="collapse" role="button"
+                           aria-expanded="false"
+                           aria-controls="navbar-hr">
+                            <i class="fas fa-user-cog"></i>HR
+                            <i class="fas fa-sort-down"></i>
+                        </a>
+                                    <div class="collapse "
+                             id="navbar-hr">
+                            <ul class="nav flex-column submenu-ul">
+                             <li class="nav-item ">
+                                        <a href="" class="nav-link">Award</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="" class="nav-link">Resignation</a>
+                                    </li>
+                                      <li class="nav-item ">
+                                        <a href="" class="nav-link">Promotion</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="" class="nav-link">Termination</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="" class="nav-link">Holidays</a>
+                                    </li>
+                                 </ul>
+                        </div>
+                                </li><br>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="">
+                                        <i class="fas fa-handshake"></i>
+                                        Meetings
+                                    </a>
+                                </li><br>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="">
                                         <i class="material-icons">notifications</i>
                                         Notifications
                                     </a>
@@ -124,13 +168,13 @@
 
             </nav>
         </div>
-        <div class="col-lg-10 col-12">
+        <div class="col-lg-9">
             {% block content %}
             {% endblock %}
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12 " style="text-align: center;padding-top: 50px;">
+        <div class="col-lg-12 " style="text-align: center;padding-top: 80px;">
             <h6><span style="color:black;">©copyrights</span></h6>
         </div>
     </div>
