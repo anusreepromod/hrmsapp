@@ -1,0 +1,204 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<div class="page-content" style="padding-top: 100px;padding-right:90px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Resignation
+</h5>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                
+        </div>  
+                <div class="all-button-box row d-flex justify-content-end">
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-plus">Add</i>
+                      </button>
+                    <!-- <span class="btn addButtons">
+                        
+                    </span>  -->
+                </div>
+    </div>
+    </div>
+            </div>
+        </div>
+        
+    </div><br>
+        <div class="row">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0 dataTable" >
+                    <thead>
+                    <tr>
+                        <th width="5%">Sl.no</th>
+                        <th width="15%">Employee Id</th>
+                        <th width="15%">Employee Name</th>
+                       <th width="15%">Resignation Date</th>
+                        <th width="15%"> Notice period</th>
+                        <th width="15%">Description</th>
+                        <th width="15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-style">
+                        <tr>
+                            <td>1</td>
+                            <td>ABCD0001</td>
+                            <td>Anusree</td>
+                          <td>Mar 1, 2021</td>
+                            <td>30 Days</td>
+                            <td>Lorem Ipsum</td>
+                             <td>
+                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="fas fa-trash"></i></a>
+                        </td>
+                            </tr>
+                           <tr>
+                               <td>2</td>
+                               <td>ABCD002</td>
+                               <td>Thanmay</td>
+                            <td>Mar 2, 2021</td>
+                            <td>30 Days</td>
+                            <td>Lorem Ipsum</td>
+                          <td>
+                            <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="fas fa-trash"></i></a>
+                            </td>
+                            </tr>
+                           </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create New Resignation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="page-content">
+                <div class="page-title">
+                </div>
+                <br>
+            
+            <div class="row">
+            <div class="col-md-12 ">
+                <div class="card ">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="" class="form-control-label">Employee Id</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" required="required" name="" type="text" >
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="" class="form-control-label">Employee Name</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" required="required" name="" type="text" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="" class="form-control-label">Resignation Date</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" name="" type="text" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="" class="form-control-label">Notice Period</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" name="" type="text" >
+                            </div>
+                                <div class="form-group col-md-12">
+                                    <label for="" class="form-control-label">Description</label><span class="text-danger pl-1">*</span>
+                                <textarea class="form-control" rows="2" name="" cols="50" id=""></textarea>
+                                </div>
+                        </div>
+                        
+                    </div>       
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end of modal -->
+<!-- view modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resignation Action</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="" class="form-control-label">Employee Id</label>
+                                        <input class="form-control" required="required" name="" type="text" placeholder="ABCD001">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label for="" class="form-control-label">Employee Name</label>
+                                        <input class="form-control" required="required" name="" type="text" placeholder="Anusree">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" class="form-control-label">Resignation Date</label>
+                                        <input class="form-control" name="" type="text" placeholder="Mar 1, 2021" >
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" class="form-control-label">Notice Period</label>
+                                        <input class="form-control" name="" type="text" placeholder="30days" >
+                                    </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="" class="form-control-label">Description</label>
+                                        <textarea class="form-control" rows="2" name="" cols="50" id="" placeholder="lorem"></textarea>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                        </div>       
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Approve</button>
+          <button type="button" class="btn btn-danger">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}

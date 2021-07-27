@@ -10,6 +10,9 @@ urlpatterns = [
     path('manageleave/', views.manageleave),
     path('createleave/', views.createleave),
     path('attendance/', views.attendance),
+    path('resignation/', views.resignation),
+    path('meetings/', views.meetings),
+    path('notifications/', views.notifications),
 
 
 ]

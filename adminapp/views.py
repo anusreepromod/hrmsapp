@@ -25,3 +25,15 @@ def createleave(request):
 
 def attendance(request):
     return render(request, 'attendancelist.html')
+
+
+def resignation(request):
+    return render(request, 'resignation.html')
+
+
+def meetings(request):
+    return render(request, 'meetings.html')
+
+
+def notifications(request):
+    return render(request, 'notifications.html')
