@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<div class="page-content" style="padding-top: 100px;padding-right: 80px;">
+<div class="page-content" style="padding-top: 60px;padding-left:10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
             <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
@@ -12,13 +12,23 @@
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-plus">Add</i>
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
                       </button>
+                    </span>
+                
+        </div>  
+                <div class="btn-group">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-plus">Add</i>
+                      </button> -->
                     <!-- <span class="btn addButtons">
-                        
                     </span>  -->
+                    <a href="/adminapp/createleave/" class="btn btn-primary btn-small active" role="button" aria-pressed="true"><i class="fa fa-plus">Add</i></a>
                 </div>
             </div>
         </div>
@@ -55,7 +65,7 @@
                         <td>Lorem Ipsum</td>
                         <td>Approved</td>
                             <td>
-                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="fas fa-eye"></i></a>
+                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
                         </td>
                         </tr>
                         <tr>
@@ -69,7 +79,7 @@
                             <td>Lorem Ipsum</td>
                             <td>Approved</td>
                                 <td>
-                                    <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="fas fa-eye"></i></a>
+                                    <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
                             </td>
                             </tr>
                             <tr>
@@ -83,7 +93,7 @@
                                 <td>Lorem Ipsum</td>
                                 <td>Approved</td>
                                 <td>
-                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="fas fa-eye"></i></a>
+                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
                                 </td>
                                 </tr>
                         </tbody>
@@ -96,67 +106,8 @@
 </div>
 </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create New Leave</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="page-content">
-                <div class="page-title">
-                </div>
-                <br>
-            
-            <div class="row">
-            <div class="col-md-12 ">
-                <div class="card ">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="form-group col-lg-12">
-                                <label for="" class="form-control-label">Employee</label><span class="text-danger pl-1">*</span>
-                                <input class="form-control" required="required" name="" type="text" >
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="" class="form-control-label">Leave Type</label><span class="text-danger pl-1">*</span>
-                                <input class="form-control" name="" type="text" >
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="" class="form-control-label">Start Date</label><span class="text-danger pl-1">*</span>
-                                <input class="form-control" name="" type="text" >
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="" class="form-control-label">End  Date</label><span class="text-danger pl-1">*</span>
-                                <input class="form-control" name="" type="text" >
-                            </div>
-                                <div class="form-group col-md-12">
-                                    <label for="" class="form-control-label">Leave Reason</label><span class="text-danger pl-1">*</span>
-                                <textarea class="form-control" rows="2" name="" cols="50" id=""></textarea>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="" class="form-control-label">Remark</label><span class="text-danger pl-1">*</span>
-                                <textarea class="form-control" rows="2" name="" cols="50" id=""></textarea>
-                                </div>
-                        </div>
-                        
-                    </div>       
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- end of modal -->
+
+   
 <!-- view modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -216,4 +167,51 @@
       </div>
     </div>
   </div>
+  <script>
+     function createleave(){
+        employee= document.getElementById("employee");
+        leavetype= document.getElementById("leavetype");
+        day= document.getElementById("day");
+        month= document.getElementById("month");
+        year= document.getElementById("year");
+        days= document.getElementById("days");
+        months= document.getElementById("months");
+        years= document.getElementById("years");
+        leavereason= document.getElementById("leavereason");
+        remark= document.getElementById("remark");
+        if (employee.value==""){
+            employee.style.borderColor="red";
+             alert("Enter the Employee name");
+        }
+        else if(leavetype.value==""){
+            leavetype.style.borderColor="red";
+            alert("Enter the leave type");
+        }
+        else if (day.value==""&& month.value==""&& year.value==""){
+            day.style.borderColor="red";
+            month.style.borderColor="red";
+            year.style.borderColor="red";
+            alert("Enter the start date");
+        }
+        else if (days.value==""&& months.value==""&& years.value==""){
+            days.style.borderColor="red";
+            months.style.borderColor="red";
+            years.style.borderColor="red";
+            alert("Enter the end date");
+        
+        }
+        else if(leavereason.value==""){
+            leavereason.style.borderColor="red";
+            alert("Enter the leave reason");
+        }
+        else if(remark.value==""){
+            remark.style.borderColor="red";
+            alert("Enter the remarks");
+            return false;
+        }
+        else{
+                return true;
+            }
+     }
+  </script>
 {% endblock %}

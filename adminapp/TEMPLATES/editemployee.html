@@ -20,7 +20,7 @@
 <div class="row">
 <div class="col-md-6 ">
     <div class="card ">
-        <div class="card-header"><h6 class="mb-0">Personal Detail</h6></div>
+        <div class="card-header"><h6 class="mb-0">Personal Details</h6></div>
         <div class="card-body ">
             <div class="row">
                 <div class="form-group col-md-4">
@@ -35,11 +35,37 @@
                     <label for="Last Name" class="form-control-label">Last Name</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" name="Last Name" type="text" >
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="dob" class="form-control-label">Date of Birth</label><span class="text-danger pl-1">*</span>
-                        <input class="form-control datepicker" name="dob" type="text" id="dob">
+                <div class="form-group col-md-12 ">
+                    <label for="" class="form-control-label">Date Of Birth</label><span class="text-danger pl-1">*</span>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <select name="day" id="day" style="width: 120px;">
+                            <option value="">Day</option>
+                            <script>
+                                for(i=1;i<=31;i++){
+                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                }
+                            </script>
+                        </select>
+                        <select name="month" id="month"style="width: 120px;">
+                            <option value="">Month</option>
+                            <script>
+                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                for(i=0;i<12;i++){
+                                    document.write("<option value='"+i+"'>"+months[i]+"</option>")
+                                }
+                            </script>
+                        </select>
+                        <select name="year" id="year" style="width: 120px;">
+                            <option value="">year</option>
+                            <script>
+                                for(i=1999;i<=(new Date().getFullYear());i++){
+                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                }
+                            </script>
+                        </select>
                     </div>
+                </div>
                 </div>
 
                 <div class="col-md-6 ">
@@ -93,21 +119,21 @@
 
  <div class="col-md-6 ">
     <div class="card">
-        <div class="card-header"><h6 class="mb-0">Official Detail</h6></div>
+        <div class="card-header"><h6 class="mb-0">Official Details</h6></div>
         <div class="card-body employee-detail-create-body">
             <div class="row">
                 
                 <div class="form-group col-md-6">
-                    <label for="employee_id" class="form-control-label">Employee ID</label>
+                    <label for="employee_id" class="form-control-label">Employee ID</label><span class="text-danger pl-1">*</span>
                     <input class="form-control"  name="employee_id" type="text" value="" id="">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="" class="form-control-label">Employee Type</label>
+                        <label for="" class="form-control-label">Employee Type</label><span class="text-danger pl-1">*</span>
                         <input class="form-control"  name="" type="text" value="" id="">
                     </div>
 
                 <div class="form-group col-md-6">
-                    <label for="department_id" class="form-control-label">Department</label>
+                    <label for="department_id" class="form-control-label">Department</label><span class="text-danger pl-1">*</span>
                     <select class="form-control" id="" required="required" name="">
                         <option value="1">PHP</option>
                         <option value="2">Android</option>
@@ -116,21 +142,50 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Designation</label>
+                    <label for="" class="form-control-label">Designation</label><span class="text-danger pl-1">*</span>
                     <select class="select2 form-control select2-multiple" id="" name="" data-toggle="select2" data-placeholder="Select Designation ...">
                         <option value="">Select any Designation</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6 ">
-                    <label for="c" class="form-control-label">Date Of Joining</label>
-                    <input class="form-control datepicker" required="required" name="company_doj" type="text" id="company_doj">
+                <div class="form-group col-md-12 ">
+                    <label for="c" class="form-control-label">Date Of Joining</label><span class="text-danger pl-1">*</span>
+                    <!-- <input class="form-control datepicker" required="required" name="company_doj" type="text" id="company_doj"> -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <select name="day" id="day" style="width: 120px;">
+                            <option value="">Day</option>
+                            <script>
+                                for(i=1;i<=31;i++){
+                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                }
+                            </script>
+                        </select>
+                        <select name="month" id="month"style="width: 120px;">
+                            <option value="">Month</option>
+                            <script>
+                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                for(i=0;i<12;i++){
+                                    document.write("<option value='"+i+"'>"+months[i]+"</option>")
+                                }
+                            </script>
+                        </select>
+                        <select name="year" id="year" style="width: 120px;">
+                            <option value="">year</option>
+                            <script>
+                                for(i=1999;i<=(new Date().getFullYear());i++){
+                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
                 </div>
                 <div class="form-group col-md-6 ">
-                    <label for="" class="form-control-label">Employee Grade</label>
+                    <label for="" class="form-control-label">Employee Grade</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" required="required" name="" type="text" id="">
                 </div>
                 <div class="form-group col-md-6 ">
-                    <label for="" class="form-control-label">Shift </label>
+                    <label for="" class="form-control-label">Shift </label><span class="text-danger pl-1">*</span>
                     <input class="form-control" required="required" name="" type="text" id="">
                 </div>
             </div>
@@ -141,7 +196,7 @@
 <div class="row" style="padding-top:40px;">
 <div class="col-md-6 ">
     <div class="card">
-        <div class="card-header"><h6 class="mb-0">Document</h6></div>
+        <div class="card-header"><h6 class="mb-0">Documents</h6></div>
         <div class="card-body employee-detail-create-body">
                                     <div class="row">
                     <div class="form-group col-12">
@@ -196,7 +251,7 @@
 </div>
 <div class="col-md-6 ">
     <div class="card">
-        <div class="card-header"><h6 class="mb-0">Contact Detail</h6></div>
+        <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
         <div class="card-body employee-detail-create-body">
             <div class="row">
                 <div class="form-group">
@@ -204,21 +259,21 @@
                     <textarea class="form-control" rows="2" name="address" cols="50" id="address"></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">city</label>
+                    <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" name="" type="text" id="">
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Country</label>
+                    <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" name="" type="text" id="">
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Pin code</label>
+                    <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" name="" type="number" id="">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Mobile Number</label>
+                    <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
                     <input class="form-control" name="" type="phone" id="">
                 </div>
             </div>
@@ -227,8 +282,11 @@
 </div>
 </div>
 <div class="row" style="padding-top: 50px;">
-<div class="col-12">
-    <button type="button" class="btn btn-primary">Create</button>
+<div class="col-sm-1">
+    <button type="button" class="btn btn-primary">Update</button>
+</div>
+<div class="col-sm-1">
+    <button type="button" class="btn btn-danger">Cancel</button>
 </div>
 </div>
 </div>

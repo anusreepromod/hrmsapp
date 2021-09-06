@@ -1,0 +1,123 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+
+    <main>
+        <div class="content" style="padding-top:60px;"> 
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-warning card-header-icon">
+                                <p class="card-category">Total Employees</p>
+                                <h3 class="card-title">4500
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-success card-header-icon">
+                                    <p class="card-category">No. of present</p>
+                                    <h3 class="card-title">3878</h3>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <p class="card-category">Total Holidays</p>
+                                <h3 class="card-title">12</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       <div class="row" style="padding-top:70px;">
+           <div class="col-lg-6">
+            <div class="card" >
+                <h5 class="card-header">Department Employees</h5>
+                <div class="card-body"  >
+                  <div class="card-responsive" >
+                    <div id="piechart" ></div>
+                </div>
+              </div>
+               </div>
+            
+           </div>
+           <script type="text/javascript">
+            // Load google charts
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            
+            // Draw the chart and set the chart values
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+              ['Role', 'Employees per Role'],
+              ['Research & Development', 8],
+              ['Testing', 2],
+              ['Management', 2],
+              ['Administration', 2],
+              ['Sales', 8]
+            ]);
+            
+              // Optional; add a title and set the width and height of the chart
+              var options = {'title':'', 'width':400, 'height':310};
+            
+              // Display the chart inside the <div> element with id="piechart"
+              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+              chart.draw(data, options);
+            }
+            </script>
+         <div class="col-lg-6" style="padding-left: 20px;">
+            <div class="card bg-none min-height-443">
+                <div class="table-responsive">
+                    <h5 class="h4 font-weight-300 float-left">Announcement List</h5>
+                    <table class="table align-items-center">
+                        <thead>
+                        <tr>
+                            <th width="15%">Title</th>
+                            <th width="15%">Start Date</th>
+                            <th width="15%">End Date</th>
+                            <th width="15%">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+                                <td>Meeting</td>
+                                <td>Mar 10, 2021</td>
+                                <td>Mar 26, 2021</td>
+                                <td>Lorem Ipsum</td>
+                            </tr>
+                            <tr>
+                                <td>Test Demo</td>
+                                <td>Mar 4, 2021</td>
+                                <td>Mar 4, 2021</td>
+                                <td>Lorem Ipsum</td>
+                            </tr>
+                              <tr>
+                                <td>Event Related</td>
+                                <td>July 4, 2021</td>
+                                <td>July 4, 2021</td>
+                                <td>Lorem Ipsum</td>
+                            </tr>
+                            <tr>
+                                <td>Meeting Related</td>
+                                <td>Aug 4, 2021</td>
+                                <td>Aug 4, 2021</td>
+                                <td>Lorem Ipsum</td>
+                            </tr>
+                             </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+       </div>
+      <div class="row">
+        
+      </div>
+    </div>
+    </main>
+
+{% endblock %}

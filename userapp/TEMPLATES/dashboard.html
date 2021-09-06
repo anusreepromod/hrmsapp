@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div class="content" style="padding-top: 100px;padding-right: 100px;">
+<div class="content" style="padding-top: 80px;">
     <div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -56,11 +56,11 @@
                             <div class="row">
                                 <div class="col-md-6 float-right border-right">
                                     <form method="" accept-charset="UTF-8"><input name="" type="hidden" value="">
-                                     <button type="submit" value="0" name="in" id="clock_in" class="btn-create badge-success">CLOCK IN</button>
+                                     <button type="submit" value="0" name="in" id="check_in" class="btn-create badge-success" onclick="checkin()">CHECK IN</button>
                                  </form>
                                 </div>
                                 <div class="col-md-6 float-left">
-                                <button type="submit" value="1" name="out" id="clock_out" class="btn-create badge-danger disabled" disabled>CLOCK OUT</button>
+                                <button type="submit" value="1" name="out" id="check_out" class="btn-create badge-danger " onclick="checkout()" >CHECK OUT</button>
                                 </form>
                                 </div>
                             </div>
@@ -199,5 +199,12 @@
 </div>
     </div>
 </div>
-
+<script>
+    function checkin(){
+        alert("Welcome to ABCD Software")
+    }
+    function checkout(){
+        alert("Good bye!")
+    }
+</script>
         {% endblock %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -11,25 +12,37 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        
         <title>ABCD Software</title>
-
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-
+  <style>
+      .nav-item{
+          padding-bottom: 20px;
+          padding-left: 10px;
+      }
+    
+      /* .d2{
+          background-color: blue;
+          
+          border-radius: 25px;
+          color: black;
+      } */
+  </style>
 <body>
     <!-- navbar -->
     <div class="row">
-        <div class="col-lg-12">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
-                <a class="navbar-brand" href="#">ABCD Software</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        <div class="col-lg-12 ">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+                <a class="navbar-brand mr-0 px-3" href="#">ABCD Software</a>
+                <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse"
+                    data-target="#sidebarmenus" aria-controls="sidebarmenus" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="sidebarmenus">
 
                     <ul class="navbar-nav ml-auto">
                         <form class="navbar-form">
@@ -45,9 +58,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">notifications</i>
-                                <span class="notification">5</span>
-                               
+                                <i class='far fa-bell' style='font-size:20px'></i>5
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Anu responded to your email</a>
@@ -79,85 +90,79 @@
     </div>
     <!-- end of navbar -->
     <!-- Vertical navbar -->
+    <div class="container-fluid ">
     <div class="row">
-        <div class="col-lg-3 col-sm-3 col-xs-3 col-12 vh-100% ">
-            <nav class="navbar navbar-light bg-light ml-0" style="position: fixed;padding-top: 85px;">
-                <div class="wrapper">
-                    <div class="sidebar">
-                        <div class='sidebar-wrapper'> 
-                            <ul class="navbar-nav" style="height: 800px; width:200px;">
+        <!-- <div class="col-lg-3 col-sm-3 col-xs-3 col-12 vh-100% "> -->
+            <nav id= "sidebarmenus" class="nav navbar-light col-md-3 col-lg-2 d-md-block bg-light sidebar collapse vh-100" style="padding-top: 15px;padding-left: 10px;">
+                <div class="wrapper d2" > 
+                    <div class="sidebar"> 
+                        <div class="sidebar-fixed" >
+                            <ul class="navbar-nav" style="height:100%; width:200px;">
                             
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/adminapp/dashboards/">
                                         <i class="material-icons">dashboard</i>
                                         Dashboard
                                     </a>
-                                </li><br>
-                                <li class="nav-item ">
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/adminapp/employee/">
                                         <i class="material-icons">badge</i>
                                         Employees
                                     </a>
-                                </li><br>
-                                <li class="nav-item ">
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/adminapp/manageleave/">
                                         <i class="material-icons">content_paste</i>
                                         Manage Leave
                                     </a>
-                                </li><br>
-                                <li class="nav-item ">
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/adminapp/attendance/">
                                         <i class="material-icons">sports_score</i>
                                         Attendance
                                     </a>
-                                </li><br>
-                                <!-- <li class="nav-item ">
-                                    <a class="nav-link" href="">
-                                        <i class="fas fa-cube"></i>     
-                                        Appraisal
-                                    </a>
-                                </li><br> -->
-                                <li class="nav-item ">
-                                    <a class="nav-link "
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link collapsed"
                            href="#navbar-hr" data-toggle="collapse" role="button"
                            aria-expanded="false"
                            aria-controls="navbar-hr">
-                            <i class="fas fa-user-cog"></i>HR
-                            <i class="fas fa-sort-down"></i>
+                            <i class="material-icons">people</i>HR
+                            <i class="material-icons">expand_more</i>
                         </a>
-                                    <div class="collapse show"
+                                    <div class="collapse"
                              id="navbar-hr">
                             <ul class="nav flex-column submenu-ul">
-                             <!-- <li class="nav-item ">
-                                        <a href="" class="nav-link">Award</a>
-                                    </li> -->
+                             
                                     <li class="nav-item ">
                                         <a href="/adminapp/resignation/" class="nav-link">Resignation</a>
                                     </li>
                                       <li class="nav-item ">
-                                        <a href="" class="nav-link">Promotion</a>
+                                        <a href="/adminapp/promotion/" class="nav-link">Promotion</a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="" class="nav-link">Termination</a>
+                                        <a href="/adminapp/complaints/" class="nav-link">Complaints</a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="" class="nav-link">Holidays</a>
+                                        <a href="/adminapp/holidays/" class="nav-link">Holidays</a>
                                     </li>
                                  </ul>
-                        </div>
-                                </li><br>
-                                <li class="nav-item ">
+                                 </div>
+                                </li>
+                            
+                                <li class="nav-item">
                                     <a class="nav-link" href="/adminapp/meetings/">
-                                        <i class="fas fa-handshake"></i>
+                                        <i class="material-icons">event_note</i>
                                         Meetings
                                     </a>
-                                </li><br>
-                                <li class="nav-item ">
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/adminapp/notifications/">
                                         <i class="material-icons">notifications</i>
                                         Notifications
                                     </a>
-                                </li><br>
+                                </li>
                                 
         
                             </ul>
@@ -167,12 +172,13 @@
                 
 
             </nav>
-        </div>
-        <div class="col-lg-9">
+        <!-- </div> -->
+        <div class="col-lg-9" >
             {% block content %}
             {% endblock %}
         </div>
     </div>
+</div>
     <div class="row">
         <div class="col-lg-12 " style="text-align: center;padding-top: 80px;">
             <h6><span style="color:black;">©copyrights</span></h6>

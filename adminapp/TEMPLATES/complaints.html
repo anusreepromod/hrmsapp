@@ -1,17 +1,17 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
-<div class="page-content" style="padding-top: 100px;padding-right:90px;">
+<div class="page-content" style="padding-top:60px;padding-left:10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
             <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                 <div class="d-inline-block">
-                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Resignation
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Complaints
 </h5>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
-                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-5 col-lg-5 col-md-5 d-flex align-items-center justify-content-between justify-content-md-end">
             
                     <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
                     <span class="input-group-append">
@@ -19,18 +19,19 @@
                             <i class="fa fa-search"></i>
                       </button>
                     </span>
+                    <!-- <a href="/adminapp/addcomplaints/" class="btn btn-primary btn-small active" role="button" aria-pressed="true">Add</a> -->
                 
         </div>  
                 <div class="all-button-box row d-flex justify-content-end" style="padding-right:68px;">
-            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
-                <div class="btn-group">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-8 col-8">
+                <div class="btn-group" >
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-plus">Add</i>
                       </button> -->
                     <!-- <span class="btn addButtons">
                         
                     </span>  -->
-                    <a href="/adminapp/createresignation/" class="btn btn-primary btn-small active" role="button" aria-pressed="true"><i class="fa fa-plus">Add</i></a>
+                    <a href="/adminapp/addcomplaints/" class="btn btn-primary btn-small active" role="button" aria-pressed="true"><i class="fa fa-plus">Add</i></a>
                 </div>
     </div>
     </div>
@@ -46,22 +47,22 @@
                 <table class="table table-striped mb-0 dataTable" >
                     <thead>
                     <tr>
-                        <th width="5%">Sl.no</th>
-                        <th width="15%">Employee Id</th>
-                        <th width="15%">Employee Name</th>
-                       <th width="15%">Resignation Date</th>
-                        <th width="15%"> Notice period</th>
+                        
+                        <th width="20%">Complaint From</th>
+                        <th width="20%">Complaint Against</th>
+                       <th width="15%">Title</th>
+                        <th width="20%"> Complaint Date</th>
                         <th width="15%">Description</th>
                         <th width="15%">Action</th>
                         </tr>
                     </thead>
                     <tbody class="font-style">
                         <tr>
-                            <td>1</td>
-                            <td>ABCD0001</td>
-                            <td>Anusree</td>
-                          <td>Mar 1, 2021</td>
-                            <td>30 Days</td>
+                            
+                            <td>Anu</td>
+                            <td>Vismay</td>
+                          <td>Project Issues</td>
+                            <td>28/7/2021</td>
                             <td>Lorem Ipsum</td>
                              <td>
                                 <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
@@ -69,11 +70,11 @@
                         </td>
                             </tr>
                            <tr>
-                               <td>2</td>
-                               <td>ABCD002</td>
+                               
                                <td>Thanmay</td>
-                            <td>Mar 2, 2021</td>
-                            <td>30 Days</td>
+                               <td>Aravind</td>
+                            <td>Project Issues</td>
+                            <td>27/6/2021</td>
                             <td>Lorem Ipsum</td>
                           <td>
                             <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
@@ -90,12 +91,14 @@
 </div>
 </div>
 </div>
+
+
 <!-- view modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Resignation Action</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Complaint</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -103,45 +106,41 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-12 ">
-                    <div class="card ">
-                        <div class="card-body ">
                             <div class="row">
-                                <div class="row">
+                                
                                     <div class="form-group col-lg-6">
-                                        <label for="" class="form-control-label">Employee Id</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="ABCD001">
+                                        <label for="" class="form-control-label">Complaint From</label>
+                                        <input class="form-control" required="required" name="" type="text" placeholder="Anu">
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label for="" class="form-control-label">Employee Name</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="Anusree">
+                                        <label for="" class="form-control-label">Complaint Against</label>
+                                        <input class="form-control" required="required" name="" type="text" placeholder="Vismay">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="" class="form-control-label">Resignation Date</label>
-                                        <input class="form-control" name="" type="text" placeholder="Mar 1, 2021" >
+                                        <label for="" class="form-control-label">Title</label>
+                                        <input class="form-control" name="" type="text" placeholder="Project Issues" >
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="" class="form-control-label">Notice Period</label>
-                                        <input class="form-control" name="" type="text" placeholder="30days" >
+                                        <label for="" class="form-control-label">Complaint Date</label>
+                                        <input class="form-control" name="" type="text" placeholder="28/7/2021" >
                                     </div>
                                         <div class="form-group col-md-12">
                                             <label for="" class="form-control-label">Description</label>
                                         <textarea class="form-control" rows="2" name="" cols="50" id="" placeholder="lorem"></textarea>
                                         </div>
-                                </div>
+                                
                             </div>
-                            
-                        </div>       
-                        </div>
                     </div>
                 </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal">Approve</button>
-          <button type="reset" class="btn btn-danger">Reject</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
         </div>
       </div>
     </div>
   </div>
+
 
 
 {% endblock %}
