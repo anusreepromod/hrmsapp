@@ -12,7 +12,8 @@
             </div>
         </div>
     </div>
-    <form method="POST"  action="">
+    <form method="POST"  action="/adminapp/addmeetings/">
+        {% csrf_token %}
         <div class="row" style="padding-top: 40px;">
             <div class="col-md-12 ">
                 <div class="card ">
@@ -41,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                {{msg}}
             </div>
         </div>
     </form>

@@ -20,30 +20,30 @@
             <img src="{% static 'images/image1.jpeg' %}" alt="" class="img2" style="height: 600px;width: 800px;">
         </div>
         <div class="col-lg-6">
-            <div>
-                <form class="lf1">
-                    <div>
-                        <h4 style="text-align: center;"><u>Login</u> </h4>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="email" name="emailaddress" required>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="text" class="form-control" id="password" name="password" >
-                    </div>
-                    <!-- <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div> -->
-                    <button type="submit" class="btn btn-primary" onclick="return login()">Submit</button>
-                </form>
+            <form class="lf1" action="/adminapp/logins/" method="POST">
+                {% csrf_token %}
+                <div>
+                    <h4 style="text-align: center;"><u>Login</u> </h4>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="text" class="form-control" id="email" name="username" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="text" class="form-control" id="password" name="password" >
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Submit</button>
+                
+            </div>
+        </form>
+                
             </div>
         </div>
-    </div>
+
      
 
     <!-- Optional JavaScript -->
@@ -57,19 +57,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-        <script>
-            function login(){     
-        
-        password= document.getElementById("password")
-     
-        if (password.value=="" || password.value.length<8){
-            alert("Password should be greater than 8 character")
-        }
-        else{
-            return false;
-        }
-    }
-        </script>
+       
+       
 </body>
 
 </html>

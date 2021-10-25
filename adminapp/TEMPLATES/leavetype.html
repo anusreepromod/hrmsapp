@@ -1,0 +1,72 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 "> Leave Type
+
+                        
+                   </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div>
+         <form action="/adminapp/leavetype/" method="POST">
+            {% csrf_token %}
+             <div class="row" style="padding-top: 20px;">
+                 <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                           <div class="row">
+                               <div class="form-group col-md-12">
+                                   
+                                   <input type="text" class="form-control" name="leavetype"  required>
+                               </div>
+                               
+                            </div>
+                            <button type="submit">Add</button>
+                            {{ msg }}
+                            
+                        </div>
+                        
+                    </div>
+                 </div>
+                     
+                 
+                </div>
+         </form>
+         
+     </div>
+     <div style="padding-top: 40px;">
+         <div class="card">
+             <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Leave Type</th>
+                        <th scope="col">Action</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in leaves %}
+                      <tr>
+                        <td >{{i.id}}</td>
+                        <td>{{i.leavetype}}</td>
+                        <td><a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+             </div>
+         </div>
+        
+     </div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "masters.html" %}
+{% extends "master.html" %}
 {% load static %}
 {% block content %}
 <div class="page-content" style="padding-top:40px;padding-left:10px;">
@@ -12,25 +12,50 @@
             </div>
         </div>
     </div>
-<form method="POST" action="">
+<form method="POST" action="/adminapp/createleave/">
     <div class="row">
         <div class="col-md-12 ">
           <div class="card ">
               <div class="card-body ">
                   <div class="row">
-                      <div class="form-group col-lg-12">
+                      <div class="form-group col-lg-6">
                           <label for="" class="form-control-label">Employee</label><span class="text-danger pl-1">*</span>
-                          <input class="form-control" required id="employee" type="text" >
+                          <input class="form-control" required id="employee" type="text" name="employee">
                       </div>
-                      <div class="form-group col-md-12">
-                          <label for="" class="form-control-label">Leave Type</label><span class="text-danger pl-1">*</span>
-                          <input class="form-control" id="leavetype" type="text" required>
-                      </div>
-                      <div class="form-group col-md-12 ">
+                      <div class="form-group col-lg-6">
+                        <label for="" class="form-control-label">Employee Id</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control" required id="employee" type="text" name="employeeid">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-12 control-label">
+                            Leave Category <span class="text-danger pl-1" >*</span>
+                        </label>
+                        <div class="col-md-12">
+                            <select  class="form-control input-width-xlarge" required>
+                             <option value="">-- Select --</option>
+                             {% for i in leave %}
+
+                           <option value="{{ i.id }}">{{ i.leavetype }}</option>
+                            
+                           {% endfor %}
+
+                           </select>
+                            <span id="" class="required" style="display:none;">Please select Leave Category.</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="" class="form-control-label">Start Date</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control" required id="startdate" type="text" name="startdate">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="" class="form-control-label">End Date</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control" required id="enddate" type="text" name="enddate">
+                    </div>
+                      <!-- <div class="form-group col-md-12 ">
                           <label for="" class="form-control-label" >Start Date</label><span class="text-danger pl-1">*</span>
                          
                       <div class="row">
-                          <div class="col-lg-12">
+                          <div class="col-lg-6">
                               <select name="day" id="day" style="width: 135px;" required>
                                   <option value="">Day</option>
                                   <script>
@@ -58,9 +83,9 @@
                               </select>
                           </div>
                       </div>
-                      </div>
-      
-                      <div class="form-group col-md-12 ">
+                      </div> -->
+<!--       
+                      <div class="form-group col-md-6">
                           <label for="" class="form-control-label">End Date</label><span class="text-danger pl-1">*</span>
                          
                       <div class="row">
@@ -92,15 +117,15 @@
                               </select>
                           </div>
                       </div>
-                    </div>
+                    </div> -->
       
                           <div class="form-group col-md-12">
                               <label for="" class="form-control-label">Leave Reason</label><span class="text-danger pl-1">*</span>
-                          <textarea class="form-control" rows="2" id="leavereason" cols="50" id="" required></textarea>
+                          <textarea class="form-control" rows="2" id="leavereason" cols="50" id="" name="leavereason"  required></textarea>
                           </div>
                           <div class="form-group col-md-12">
                               <label for="" class="form-control-label">Remark</label><span class="text-danger pl-1">*</span>
-                          <textarea class="form-control" rows="2" id="remark" cols="50" id="" required></textarea>
+                          <textarea class="form-control" rows="2" id="remark" cols="50" id="" name="remark" required></textarea>
                           </div>
                   </div>
                   <div class="modal-footer">

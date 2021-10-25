@@ -57,30 +57,19 @@
                         </tr>
                     </thead>
                     <tbody class="font-style">
+                        {% for i in complaints %}
                         <tr>
-                            
-                            <td>Anu</td>
-                            <td>Vismay</td>
-                          <td>Project Issues</td>
-                            <td>28/7/2021</td>
-                            <td>Lorem Ipsum</td>
+                            <td>{{i.cf}}</td>
+                            <td>{{i.ca}}</td>
+                          <td>{{i.title}}</td>
+                            <td>{{i.doc}}</td>
+                            <td>{{i.description}}</td>
                              <td>
                                 <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
                             <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons">delete</i></a>
                         </td>
                             </tr>
-                           <tr>
-                               
-                               <td>Thanmay</td>
-                               <td>Aravind</td>
-                            <td>Project Issues</td>
-                            <td>27/6/2021</td>
-                            <td>Lorem Ipsum</td>
-                          <td>
-                            <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
-                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons">delete</i></a>
-                            </td>
-                            </tr>
+                           {% endfor %}
                            </tbody>
                 </table>
             </div>

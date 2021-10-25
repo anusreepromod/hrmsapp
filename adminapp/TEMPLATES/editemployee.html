@@ -1,7 +1,13 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    window.onload=function(){
+        updatedata()
+    }
+     
+ </script>
  <div class="page-content" style="padding-top: 100px;padding-right: 50px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -22,33 +28,49 @@
     <div class="card ">
         <div class="card-header"><h6 class="mb-0">Personal Details</h6></div>
         <div class="card-body ">
+            
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="name" class="form-control-label">First Name</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" required="required" name="First Name" type="text" >
+                    <input class="form-control" required="required" name="First Name" type="text" value=""  id="fname">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="Middle Name" class="form-control-label">Middle Name</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="Middle Name" type="text" >
+                    <input class="form-control" name="Middle Name" type="text" value="" >
                 </div>
                 <div class="form-group col-md-4">
                     <label for="Last Name" class="form-control-label">Last Name</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="Last Name" type="text" >
+                    <input class="form-control" name="Last Name" type="text" value="" >
                 </div>
                 <div class="form-group col-md-12 ">
                     <label for="" class="form-control-label">Date Of Birth</label><span class="text-danger pl-1">*</span>
                 <div class="row">
                     <div class="col-lg-12">
                         <select name="day" id="day" style="width: 120px;">
-                            <option value="">Day</option>
+                            <!-- <option value="">Day</option> -->
+                            <script>
+                                d=new Date('{{i.date}}').getDay()
+                                alert(d)
+                                document.write("<option value='"+d+"'>"+d+"</option>")
+                            </script>
                             <script>
                                 for(i=1;i<=31;i++){
-                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                    if(i<10){
+                                        document.write("<option value='"+0+i+"'>"+i+"</option>")
+                                    }else{
+                                        document.write("<option value='"+i+"'>"+i+"</option>")
+                                    }
+                                    
                                 }
                             </script>
                         </select>
                         <select name="month" id="month"style="width: 120px;">
-                            <option value="">Month</option>
+                            <script> 
+                                m=new Date('{{i.date}}').getMonth()
+                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                document.write("<option value='"+m+"'>"+months[m]+"</option>")
+                            </script>
+                            
                             <script>
                                 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
                                 for(i=0;i<12;i++){
@@ -57,6 +79,11 @@
                             </script>
                         </select>
                         <select name="year" id="year" style="width: 120px;">
+                            <script>
+                                y=new Date('{{i.date}}').getFullYear()
+                                alert(y)
+                                document.write("<option value='"+y+"'>"+y+"</option>")
+                            </script>
                             <option value="">year</option>
                             <script>
                                 for(i=1999;i<=(new Date().getFullYear());i++){
@@ -68,39 +95,52 @@
                 </div>
                 </div>
 
-                <div class="col-md-6 ">
+                <div class="col-md-12 ">
                     <div class="form-group ">
                         <label for="gender" class="form-control-label">Gender</label><span class="text-danger pl-1">*</span>
                         <div class="d-flex radio-check">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="g_male" value="Male" name="gender" class="custom-control-input">
+                                <input type="radio" id="male" value="Male" name="gender" class="custom-control-input">
                                 <label class="custom-control-label" for="g_male">Male</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="g_female" value="Female" name="gender" class="custom-control-input">
+                                <input type="radio" id="female" value="Female" name="gender" class="custom-control-input">
                                 <label class="custom-control-label" for="g_female">Female</label>
                             </div>
+                            <script>
+                                gen='{{i.gender}}'
+                                if(gen=='Male'){
+                                    document.getElementById('male').checked=true;
+                                }
+                                else{
+                                    document.getElementById('female').checked=true;
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
+                
                 <div class="form-group col-md-6">
                     <label for="email" class="form-control-label">Email</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" required="required" name="email" type="email" id="email">
+                    <input class="form-control" required="required" name="email" type="email" id="email" value="{{i.username}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="password" class="form-control-label">Password</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" required="required" name="password" type="password" value="" id="password">
+                    <input class="form-control" required="required" name="password" type="text" value="{{i.password}}" id="password">
                 </div>
+                
             <!-- </div> -->
+           
             <div class="form-group col-md-6">
                 <label for="name" class="form-control-label">Father's Name</label><span class="text-danger pl-1">*</span>
-                <input class="form-control" required="required" name="name" type="text" >
+                <input class="form-control" required="required" name="name" type="text" value="{{i.fathersname }}">
             </div>
             <div class="form-group col-md-6">
                 <label for="name" class="form-control-label">Marital Status</label><span class="text-danger pl-1">*</span>
-                <input class="form-control" required="required" name="name" type="text" >
+                <input class="form-control" required="required" name="name" type="text" value="{{i.maritalstatus }}">
             </div>
             </div>
+            
             <!-- <div class="form-group col-md-6">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -125,11 +165,12 @@
                 
                 <div class="form-group col-md-6">
                     <label for="employee_id" class="form-control-label">Employee ID</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="employee_id" type="text" value="" id="">
+                    <input class="form-control"  name="employee_id" type="text" value="ABC00{{ i.id }}" id="">
                     </div>
+                   
                     <div class="form-group col-md-6">
                         <label for="" class="form-control-label">Employee Type</label><span class="text-danger pl-1">*</span>
-                        <input class="form-control"  name="" type="text" value="" id="">
+                        <input class="form-control"  name="" type="text" value="{{ i.employeetype }}" id="">
                     </div>
 
                 <div class="form-group col-md-6">
@@ -182,12 +223,13 @@
                 </div>
                 <div class="form-group col-md-6 ">
                     <label for="" class="form-control-label">Employee Grade</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" required="required" name="" type="text" id="">
+                    <input class="form-control" required="required" name="" type="text" id="" value="{{i.employeegrade}}">
                 </div>
                 <div class="form-group col-md-6 ">
                     <label for="" class="form-control-label">Shift </label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" required="required" name="" type="text" id="">
+                    <input class="form-control" required="required" name="" type="text" id="" value="{{i.shift}}">
                 </div>
+                
             </div>
         </div>
     </div>
@@ -252,31 +294,42 @@
 <div class="col-md-6 ">
     <div class="card">
         <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
-        <div class="card-body employee-detail-create-body">
+        
+        <div class="card-body ">
+            
             <div class="row">
-                <div class="form-group">
+              
+              
+                <div class="form-group col-md-12">
+                    <label for="email" class="form-control-label">Personal Email</label><span class="text-danger pl-1">*</span>
+                    <input class="form-control"  name="personalemail" type="email" id="pemail" value="{{i.personalemail}}" >
+                </div>
+                
+                <div class="form-group" style="padding-left: 17px;padding-right: 18px;">
                     <label for="address" class="form-control-label">Address</label><span class="text-danger pl-1">*</span>
-                    <textarea class="form-control" rows="2" name="address" cols="50" id="address"></textarea>
+                    <textarea class="form-control" rows="2" name="address" cols="50" id="address" >{{i.address}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="" type="text" id="">
+                    <input class="form-control" name="" type="text" id="" value="{{i.city}}">
 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="" type="text" id="">
+                    <input class="form-control" name="" type="text" id="" value="{{i.country}}">
 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="" type="number" id="">
+                    <input class="form-control" name="" type="text" id="" value="{{i.pincode}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="" type="phone" id="">
+                    <input class="form-control" name="" type="text" id="" value="{{i.mobile}}">
                 </div>
+                
             </div>
+           
         </div>
     </div>
 </div>
@@ -290,5 +343,25 @@
 </div>
 </div>
 </div>
-
+<script>
+    function updatedata(){
+            function updatedata(uid){
+            $.ajax({
+                url: '/adminapp/editemployees',
+                type: 'POST',
+                data:{
+                    uid:uid
+                },
+                success:function(response){
+                  console.log(response.data[0].name)
+                //   $('#upid').val(response.updata[0].id)
+                 $('#fname').val(response.updata[0].fname)
+                 $('#pemail').val(response.updata[0].pemail)
+                
+                
+              } 
+            })
+        }
+        }
+</script>
 {% endblock %}

@@ -1,13 +1,15 @@
 from django.urls.conf import path
-from django.urls.resolvers import URLPattern
+
 
 from . import views
 
 urlpatterns = [
-    path('logins/', views.logins),
+    # path('registration/', views.registration, name="registration"),
+    path('logins/', views.logins, name="logins"),
     path('employee/', views.employee),
     path('addstaff/', views.addstaff),
     path('editemployee/', views.editemployee),
+
     path('manageleave/', views.manageleave),
     path('createleave/', views.createleave),
     path('attendance/', views.attendance),
@@ -23,6 +25,14 @@ urlpatterns = [
     path('createpromotion/', views.createpromotion),
     path('addmeetings/', views.addmeetings),
     path('createleave/', views.createleave),
+    path('designation/', views.designations, name="designation"),
+    path('department/', views.departments, name="department"),
+    path('leavetype/', views.leave, name="leavetype"),
+    path('sample/', views.sample),
+
+    path('employees/', views.fnemployee),
+    path('editemployees/', views.fneditemployee),
+    path('getdata/', views.getdata)
 
 
 

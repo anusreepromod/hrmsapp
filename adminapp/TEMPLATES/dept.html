@@ -1,0 +1,13 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+ <form action="/adminapp/dept/" method="POST">
+     {% csrf_token %}
+     <div>
+         <input type="text" name="edepartment">
+         <button type="submit">add</button>
+         {{ msg }}
+     </div>
+ </form>
+
+{% endblock %}

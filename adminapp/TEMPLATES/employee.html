@@ -1,6 +1,8 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 <div class="page-content" style="padding-top:60px;padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -48,45 +50,25 @@
                         <th width="25%">Action</th>
                                                     </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="Id">#ABC001</td>
-                            <td >Anu</td>
-                            <td>anu@abcdsoftware.com</td>
-                            <td >Python</td>
-                            <td >Developer</td>
-                            <td >Mar 4, 2020</td>
+                    <!-- <tbody>
+                        {% for i in user%}
+                        
+                        <tr> 
+                            <td >ABCD0{{i.id}}</td>
+                            <td >{{i.firstname}}</td>
+                            <td>{{i.email}}</td> 
+                            <td >{{i.department_id_id }}</td>
+                            <td >{{i.designation_id_id  }}</td>
+                            <td >{{i.doj }}</td>
                             <td>
+                                <button onclick="edit('{{i.id}}')"><i class="material-icons">edit</i></button>
                                 <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons">edit</i></a>
                                 <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a>
                             </td>
-                           </tr>
-                           <tr>
-                            <td class="Id">#ABC002</td>
-                            <td >Thanmay</td>
-                            <td>thanmay@abcdsoftware.com</td>
-                            <td >Python</td>
-                            <td >Developer</td>
-                            <td >Mar 4, 2020</td>
-                            <td>
-                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons">edit</i></a>
-                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a>
-                            </td>
-                           </tr>
-                           <tr>
-                            <td class="Id">#ABC003</td>
-                            <td >Vismay</td>
-                            <td>vismay@abcdsoftware.com</td>
-                            <td >Python</td>
-                            <td >Developer</td>
-                            <td >Mar 4, 2020</td>
-                            <td>
-                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons">edit</i></a>
-                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a>
-                            </td>
-                           </tr>
-                          
-                       </tbody>
+                        </tr>
+                        {% endfor %}
+                        
+                       </tbody> -->
                 </table>
             </div>
         </div>
@@ -98,6 +80,42 @@
 </div>
 </div>
 
-
-
 {% endblock %}
+
+
+<script>
+    // function loaddata(){
+    //         $.ajax({
+    //             url:'/adminapp/employees/',
+    //             type: 'GET',
+    //             success: function(response){
+    //                 // console.log(response.user)
+    //                 $('.tr').remove()
+    //                 for(i=0;i<response.user.length;i++){
+    //                  $('#table').append("<tr class='tr'><td>"+response.user[i].id+"</td><td>"+response.datas[i].fname+"</td><td>"+response.datas[i].email+"</td><td>"+response.datas[i].department+"</td><td>"+response.datas[i].designation+"</td><td>"+response.datas[i].doj+"</td><td><button onclick='deldata("+response.user[i].id+")'>Delete</button></td><td><button data-toggle='modal' data-target='#exampleModal' onclick='updatedata("+response.datas[i].id+")'>Update</button></td></tr>")
+             
+
+    //                 }
+    //             }
+    //         })
+    //     }
+    // $.ajaxSetup({
+ 	//  		headers: { "X-CSRFToken": '{{csrf_token}}' }
+	// 	});
+    //     function edit(id){
+    //         alert(id)
+    //         $.ajax({
+    //         url: '/adminapp/editemp/',
+    //         type:'POST',
+    //         data:{
+    //             id:id
+    //         },
+    //         success:function(response){
+    //               console.log(response.msg)
+    //           }
+
+    //     })
+    //     }
+        
+</script>
+

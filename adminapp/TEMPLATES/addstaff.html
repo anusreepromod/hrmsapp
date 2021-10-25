@@ -2,75 +2,84 @@
 {% load static %}
 {% block content %}
 
- <div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
-    
+<div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
             <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
                 <div class="d-inline-block">
                     <h5 class="h4 d-inline-block font-weight-400 mb-0 "> Add Employee
-</h5>
+                        {{ message }}
+                        {{ msg }}
+                    </h5>
                 </div>
             </div>
-            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
-                                    </div>
         </div>
     </div>
-    
-
- <div class="row">
-     <!-- <form action=""> -->
- <div class="col-md-6 ">
-    <div class="card ">
-        <div class="card-header"><h6 class="mb-0">Personal Details</h6></div>
-        <div class="card-body ">
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="name" class="form-control-label">First Name</label><span class="text-danger pl-1">*</span>
-                    <input type="text" class="form-control" name="firstname" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="Middle Name" class="form-control-label">Middle Name</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control" name="Middle Name" type="text"  >
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="Last Name" class="form-control-label">Last Name</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="Last Name" type="text" >
+<form action="/adminapp/addstaff/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row" style="padding-top: 20px;">  
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><h6 class="mb-0">Personal Details</h6></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="name" class="form-control-label">First Name</label><span class="text-danger pl-1">*</span>
+                        <input type="text" class="form-control" name="firstname" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Middle Name" class="form-control-label">Middle Name</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control" name="middlename" type="text" required >
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Last Name" class="form-control-label">Last Name</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="lastname" type="text" required>
+                    </div>
                 </div>
                 <div class="form-group col-md-12 ">
                     <label for="DOB" class="form-control-label">Date Of Birth</label><span class="text-danger pl-1">*</span>
                    
                     <div class="row">
                     <div class="col-lg-12">
-                        <select name="day" id="day" style="width: 120px;">
+                        <select  name="day" id="day" style="width: 120px;">
                             <option value="">Day</option>
                             <script>
                                 for(i=1;i<=31;i++){
-                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                    if(i<10){
+                                        document.write("<option value='"+0+i+"'>"+i+"</option>")
+                                    }else{
+                                        document.write("<option value='"+i+"'>"+i+"</option>")
+                                    }
+                                    
                                 }
                             </script>
                         </select>
-                        <select name="month" id="month" style="width: 120px;">
+                        <select  name="month" id="month" style="width: 120px;">
                             <option value="">Month</option>
                             <script>
                                 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                for(i=0;i<12;i++){
-                                    document.write("<option value='"+i+"'>"+months[i]+"</option>")
+                                for(i=1;i<=12;i++){
+                                    if(i<10){
+                                        document.write("<option value='"+0+i+"'>"+months[i-1]+"</option>")
+                                    } else{
+                                        document.write("<option value='"+i+"'>"+months[i-1]+"</option>")
+                                    }
+                                    
                                 }
                             </script>
                         </select>
-                        <select name="year" id="year" style="width: 120px;">
-                            <option value="">year</option>
+                        <select  name="years" style="width: 120px;">
+                            <option>Year</option>
+                           
                             <script>
-                                for(i=1999;i<=(new Date().getFullYear());i++){
+                                for(i=1983;i<=(new Date().getFullYear());i++){
                                     document.write("<option value='"+i+"'>"+i+"</option>")
                                 }
-                            </script>
+                            </script> 
                         </select>
                     </div>
                     </div>
                 </div>
-
                 <div class="col-md-12">
                     <div class="form-group ">
                         <label for="gender" class="form-control-label">Gender</label><span class="text-danger pl-1">*</span>
@@ -86,215 +95,217 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="form-group col-md-6">
-                    <label for="email" class="form-control-label">Email</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="email" type="email" id="email" >
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="password" class="form-control-label">Password</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="password" type="password" value="" id="password" >
-                </div>
-            <!-- </div> -->
-            <div class="form-group col-md-6">
-                <label for="name" class="form-control-label">Father's Name</label><span class="text-danger pl-1">*</span>
-                <input class="form-control"  name="name" type="text" >
-            </div>
-            <div class="form-group col-md-6">
-                <label for="name" class="form-control-label">Marital Status</label><span class="text-danger pl-1">*</span>
-                <input class="form-control"  name="name" type="text" >
-            </div>
-       
-            <!-- <div class="form-group col-md-6">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Marital status
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Married</a>
-                      <a class="dropdown-item" href="#">Single</a>
-                      <a class="dropdown-item" href="#">Divorcee</a>
-                    </div>
-                  </div>
-            </div> -->
-            </div>
-        </div>       
-        </div>
-    </div>
-
- <div class="col-md-6 ">
-    <div class="card">
-        <div class="card-header"><h6 class="mb-0">Official Details</h6></div>
-        <div class="card-body ">
-            <div class="row">
-                
-                <div class="form-group col-md-6">
-                    <label for="employee_id" class="form-control-label">Employee ID</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="" type="text" value="" id="employeeid">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="email" class="form-control-label">Email</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="email" type="email" id="email"  required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="" class="form-control-label">Employee Type</label><span class="text-danger pl-1">*</span>
-                        <input class="form-control"  name="" type="text" value="" id="employeetype">
+                        <label for="email" class="form-control-label">Password</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="password" type="password" id="password" >
                     </div>
-
-                <div class="form-group col-md-6">
-                    <label for="department_id" class="form-control-label">Department</label><span class="text-danger pl-1">*</span>
-                    <select class="form-control" id="department"  name="">
-                        <option value="1">PHP</option>
-                        <option value="2">Android</option>
-                        <option value="3">IOS</option>
-                        <option value="4">PHP</option></select>
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Designation</label><span class="text-danger pl-1">*</span>
-                    <select class="select2 form-control select2-multiple"  id="designation" name="" data-toggle="select2" data-placeholder="Select Designation ...">
-                        <option value="">Select any Designation</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-12 ">
-                    <label for="c" class="form-control-label">Date Of Joining</label><span class="text-danger pl-1">*</span>
-                    <!-- <input class="form-control datepicker" required="required" name="company_doj" type="text" id="company_doj"> -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <select name="days" id="days" style="width: 120px;">
-                            <option value="">Day</option>
-                            <script>
-                                for(i=1;i<=31;i++){
-                                    document.write("<option value='"+i+"'>"+i+"</option>")
-                                }
-                            </script>
-                        </select>
-                        <select name="months" id="months"style="width: 120px;">
-                            <option value="">Month</option>
-                            <script>
-                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                for(i=0;i<12;i++){
-                                    document.write("<option value='"+i+"'>"+months[i]+"</option>")
-                                }
-                            </script>
-                        </select>
-                        <select name="year" id="years" style="width: 120px;">
-                            <option value="">year</option>
-                            <script>
-                                for(i=1999;i<=(new Date().getFullYear());i++){
-                                    document.write("<option value='"+i+"'>"+i+"</option>")
-                                }
-                            </script>
-                        </select>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="form-control-label">Father's Name</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="fathersname" type="text"required >
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="form-control-label">Marital Status</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="marital" type="text"required >
                     </div>
                 </div>
-                </div>
-                <div class="form-group col-md-6 ">
-                    <label for="" class="form-control-label">Employee Grade</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="" type="text" id="">
-                </div>
-                <div class="form-group col-md-6 ">
-                    <label for="" class="form-control-label">Shift </label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="" type="text" id="">
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 ">
+        <div class="card">
+            <div class="card-header"><h6 class="mb-0">Official Details</h6></div>
+            <div class="card-body ">
+                <div class="row">
+                    
+                    <div class="form-group col-md-6">
+                        <label for="employee_id" class="form-control-label">Employee ID</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="employeeid" type="text" value="" id="employeeid" >
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Employee Type</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="employeetype" type="text" value="" id="employeetype" >
+                        </div>
+    
+                    <div class="form-group col-md-6">
+                        <label for="department_id" class="form-control-label">Department</label><span class="text-danger pl-1">*</span>
+                        <select class="form-control" id="department"  name="department">
+                            <option value="">Select</option>
+                            {% for i in departments %}
+                            <option value="{{i.id}}">{{i.department_name}}</option>          
+                            {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                        <label for="" class="form-control-label">Designation</label><span class="text-danger pl-1">*</span>
+                        <select class="select2 form-control select2-multiple"  id="designation" name="designation" data-toggle="select2" data-placeholder="Select Designation" >
+                            <option value="">Select any Designation</option>
+                            {% for i in designations %}
+                            <option value="{{i.id}}">{{i.designation_name}}</option>          
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12 ">
+                        <label for="c" class="form-control-label">Date Of Joining</label><span class="text-danger pl-1">*</span>
+                        <!-- <input class="form-control datepicker" required="required" name="company_doj" type="text" id="company_doj"> -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <select name="days" id="days" style="width: 120px;">
+                                <option value="">Day</option>
+                                <script>
+                                    for(i=1;i<=31;i++){
+                                        if(i<10){
+                                            document.write("<option value='"+0+i+"'>"+i+"</option>")
+                                        }else{
+                                            document.write("<option value='"+i+"'>"+i+"</option>")
+                                        }
+                                       
+                                    }
+                                </script>
+                            </select>
+                            <select name="months" id="months"style="width: 120px;">
+                                <option value="">Month</option>
+                                <script>
+                                    var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                    for(i=1;i<12;i++){
+                                        if(i<10){
+                                            document.write("<option value='"+0+i+"'>"+months[i-1]+"</option>")
+                                        }else{
+                                            document.write("<option value='"+i+"'>"+months[i-1]+"</option>")
+                                        }
+                                        
+                                    }
+                                </script>
+                            </select>
+                            <select name="years" id="years" style="width: 120px;">
+                                <option value="">year</option>
+                                <script>
+                                    for(i=1999;i<=(new Date().getFullYear());i++){
+                                        document.write("<option value='"+i+"'>"+i+"</option>")
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="" class="form-control-label">Employee Grade</label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="employeegrade" type="text" id="" >
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="" class="form-control-label">Shift </label><span class="text-danger pl-1">*</span>
+                        <input class="form-control"  name="shift" type="text" id="" >
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-<div class="row" style="padding-top:40px;">
-<div class="col-md-6 ">
-    <div class="card">
-        <div class="card-header"><h6 class="mb-0">Documents</h6></div>
-        <div class="card-body employee-detail-create-body">
-                                    <div class="row">
-                    <div class="form-group col-12">
-                        <div class="float-left col-4">
-                            <label for="document" class="float-left pt-1 form-control-label">Certificate<span class="text-danger">*</span> </label>
-                        </div>
-                        <div class="float-right col-8">
-                            <input type="hidden" name="certificate" id="" value="">
-                            <div class="choose-file form-group">
-                                <label for="">
-                                    <div>Choose File</div>
-                                    <input class="form-control   border-0"    name="" type="file" id="" data-filename="">
-                                </label>     
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-12">
-                        <div class="float-left col-4">
-                            <label for="document" class="float-left pt-1 form-control-label">Resume <span class="text-danger">*</span> </label>
-                        </div>
-                        <div class="float-right col-8">
-                            <input type="hidden" name="resume" id="" value="" >
-                            <div class="choose-file form-group">
-                                <label for="">
-                                    <div>Choose File</div>
-                                    <input class="form-control   border-0"    name="" type="file" id="" data-filename="">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                    <div class="row">
-                    <div class="form-group col-12">
-                        <div class="float-left col-4">
-                            <label for="document" class="float-left pt-1 form-control-label">Photo<span class="text-danger">*</span> </label>
-                        </div>
-                        <div class="float-right col-8">
-                            <input type="hidden" name="photo" id="" value="" >
-                            <div class="choose-file form-group">
-                                <label for="">
-                                    <div>Choose File</div>
-                                    <input class="form-control   border-0"  name="" type="file" id="" data-filename="">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </div>
-</div>
-<div class="col-md-6 ">
-    <div class="card">
-        <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
-        <div class="card-body employee-detail-create-body">
-            <div class="row">
-                <div class="form-group">
-                    <label for="address" class="form-control-label">Address</label><span class="text-danger pl-1">*</span>
-                    <textarea class="form-control" rows="2"  name="address" cols="50" id="address"></textarea>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="city" type="text" id="">
-
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="country" type="text" id="">
-
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="pincode" type="text" id="pincode">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
-                    <input class="form-control"  name="mobilenumber" type="phone" id="mobile">
+    <div class="row" style="padding-top:40px;">
+        <div class="col-md-6 ">
+            <div class="card">
+                <div class="card-header"><h6 class="mb-0">Documents</h6></div>
+                <div class="card-body">
+                                            <div class="row">
+                            <div class="form-group col-12">
+                                <div class="float-left col-4">
+                                    <label for="document" class="float-left pt-1 form-control-label">Certificate<span class="text-danger">*</span> </label>
+                                </div>
+                                <div class="float-right col-8">
+                                    <!-- <input type="hidden" name="certificate" id="" value="" > -->
+                                    <div class="choose-file form-group">
+                                        <label for="">
+                                            <div>Choose File</div>
+                                            <input class="form-control   border-0"    name="certificates" type="file" id="" data-filename="">
+                                        </label>     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <div class="float-left col-4">
+                                    <label for="document" class="float-left pt-1 form-control-label">Resume <span class="text-danger">*</span> </label>
+                                </div>
+                                <div class="float-right col-8">
+                                    <!-- <input type="hidden" name="resume" id="" value="" > -->
+                                    <div class="choose-file form-group">
+                                        <label for="">
+                                            <div>Choose File</div>
+                                            <input class="form-control   border-0"    name="resume" type="file" id="" data-filename="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="row">
+                            <div class="form-group col-12">
+                                <div class="float-left col-4">
+                                    <label for="document" class="float-left pt-1 form-control-label">Photo<span class="text-danger">*</span> </label>
+                                </div>
+                                <div class="float-right col-8">
+                                    <!-- <input type="hidden" name="photo" id="" value="" > -->
+                                    <div class="choose-file form-group">
+                                        <label for="">
+                                            <div>Choose File</div>
+                                            <input class="form-control   border-0"  name="photo" type="file" id="" data-filename="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="card">
+                <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="email" class="form-control-label">Personal Email</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="personalemail" type="email" id="personalemail" >
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="form-control-label">Address</label><span class="text-danger pl-1">*</span>
+                            <textarea class="form-control" rows="2"  name="address" cols="50" id="address"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="city" type="text" id="">
+        
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="country" type="text" id="">
+        
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="pincode" type="text" id="pincode">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="mobile" type="text" id="mobile">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-<div class="row" style="padding-top: 50px;">
-<div class="col-12">
-    <button type="submit" class="btn btn-primary" onclick="return submit()" >Create</button>
-</div>
-</div>
-<!-- </form> -->
+    <button type="submit" class="btn btn-primary" >Create</button>
+</form>
 </div>
 <script> 
-    function submit(){
+    function esubmit(){
     male= document.getElementById("g_male");
     female= document.getElementById("g_female");
     mobile= document.getElementById("mobile");

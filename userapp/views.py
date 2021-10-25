@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from adminapp.models import *
 
 # Create your views here.
 
@@ -12,6 +13,8 @@ def dashboard(request):
 
 
 def editprofile(request):
+    profile_obj = personaldetail.objects.all()
+    print(profile_obj)
     return render(request, 'editprofile.html')
 
 
@@ -20,7 +23,8 @@ def leave(request):
 
 
 def applyleave(request):
-    return render(request, 'applyleave.html')
+    leave_obje = leavetype.objects.all()
+    return render(request, 'applyleave.html', {'leave': leave_obje})
 
 
 def notification(request):
