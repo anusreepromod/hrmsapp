@@ -1,6 +1,13 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -29,7 +36,7 @@
                                
                             </div>
                             <button type="submit">Add</button>
-                            {{ msg }}
+                            
                             
                         </div>
                         
@@ -39,12 +46,12 @@
                  
                 </div>
          </form>
-         
+         {{ msg }}
      </div>
      <div style="padding-top: 40px;">
          <div class="card">
              <div class="card-body">
-                <table class="table">
+                <table class="table" id="table">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Id</th>
@@ -54,13 +61,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                        {% for i in leaves %}
+                        <!-- {% for i in leaves %}
                       <tr>
                         <td >{{i.id}}</td>
                         <td>{{i.leavetype}}</td>
                         <td><a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a></td>
                       </tr>
-                      {% endfor %}
+                      {% endfor %} -->
                     </tbody>
                   </table>
              </div>
@@ -68,5 +75,34 @@
         
      </div>
 </div>
-
+<script>
+    function loaddata(){
+        $.ajax({
+            url:'/adminapp/fnleavetype/',
+            type:'GET',
+            success: function(response){
+                $('.tr').remove()
+                for(i=0;i<response.leave.length;i++){
+                    $('#table').append("<tr class='tr'><td>"+response.leave[i].id+"</td><td>"+response.leave[i].leavetype+"</td><td><button onclick='deldata("+response.leave[i].id+")'>Delete</button></td></tr>")
+                }
+            }
+        })
+    }
+    function deldata(id){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/adminapp/delleavetype/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    loaddata()
+                }
+            })
+        }
+</script>
 {% endblock %}

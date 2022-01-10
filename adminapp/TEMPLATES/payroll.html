@@ -1,0 +1,258 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<style>
+    table{
+    width: 100%;
+    border-collapse:collapse;
+    border: 1px solid black;
+    }
+    table td{line-height:25px;padding-left:15px;}
+    table th{background-color:#fbc403; color:#363636;}
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    window.onload=function(){
+        loaddata()
+    } 
+ </script>
+<div class="page-content" style="padding-top: 60px;padding-left:10px;">
+    <div class="row" style="padding-top: 40px;">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                   Payroll Form
+                    </div>
+                    <div class="card-body">
+                     
+                          
+                       <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="input-label" for="">Department
+                                    <span class="required-field"></label>
+                                    <select id="dept" name="dept" class="form-control">
+                                    <option value="">--select--</option>
+                                    {% for i in dept %}
+                                    <option value="{{i.id}}">{{i.department_name}}</option>
+                                    {% endfor %}
+                                    </select>
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="input-label" for="">Employee First Name
+                                    <span class="required-field"></label>
+                                    <select id="efm" name="efm" class="form-control" >
+                                    <option value="">--select--</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="input-label" for="">Employee Last Name
+                                        <span class="required-field"></label>
+                                        <select id="elm" name="elm" class="form-control" >
+                                        <option value="">--select--</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                      </div>
+                          <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name">Salary</label>
+                                    <input type="text" class="form-control" name="salary" id="salary">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="name">TDS</label>
+                                        <input type="text" class="form-control" name="tds" id="tds">
+                                        </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                                <label for="name">Special Allowance</label>
+                                <input type="text" class="form-control" name="sa" id="sa">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="name">Medical Allowance</label>
+                                    <input type="text" class="form-control" name="ma" id="ma">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="name">Conveyance</label>
+                                        <input type="text" class="form-control" name="conveyance" id="conveyance">
+                                        </div>
+                      </div>
+                        </div> 
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary" onclick="calculate()">Calculate</button>
+                                        
+                                 </div>
+                     
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 40px;">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body py-0" style="padding-top: 10px;">
+                    <table border="1" >
+                        <tr height="60px" style="background-color:#363636;color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+                            <td colspan='4'>Payroll</td>
+                            </tr>
+                        <table border="1">
+                        <tr>
+                        <th >Earnings</th>
+                        <th>Amount</th>
+                        <th >Deductions</th>
+                        <th>Amount</th>
+                        </tr>
+                        <tr>
+                        <td>Basic</td>
+                        <td id="basic"></td>
+                        <td>professional tax</td>
+                        <td id="ptax"></td>
+                        </tr>
+                        <tr>
+                        <td>House Rent Allowance</td>
+                        <td id="hra"></td>
+                        <td>TDS</td>
+                        <td id="td"></td>
+                        </tr>
+                        <tr>
+                        <td>Special Allowance</td>
+                        <td id="special"></td>
+                        
+                        </tr>
+                        <tr>
+                        <td>Conveyance</td>
+                        <td id="con"></td>
+                        </tr>
+                        <tr>
+                        <td>Medical Allowance</td>
+                        <td id="medical"></td>
+                        </tr>
+                        <tr>
+                        <th>Gross Earnings</th>
+                        <td id="ge"></td>
+                        <th >Gross Deductions</th>
+                        <td id="gd"></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td><strong>NET PAY</strong></td>
+                        <td id="np"></td>
+                        <td></td>
+                        </tr>
+                        </table>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+<script>
+     $('#dept').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/getemployee/',
+            type:'POST',
+            data:{
+                dept:$('#dept').val()
+            },
+            success: function(response){
+                for(i=0;i<response.emf.length;i++){
+                    $('#efm').append('<option >'+response.emf[i].emp_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+    $('#efm').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/getlastname/',
+            type:'POST',
+            data:{
+                efm:$('#efm').val()
+            },
+            success: function(response){
+                for(i=0;i<response.elm.length;i++){
+                    $('#elm').append('<option >'+response.elm[i].elm_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+    $('#elm').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/getsalary/',
+            type:'POST',
+            data:{
+                efm:$('#efm').val(),
+                elm:$('#elm').val()
+            },
+            success: function(response){
+                
+                $('#salary').val(response.salary[0].salary)
+               
+            }
+        })
+    }
+    )
+    function calculate(){
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+   $.ajax({
+       url:'/adminapp/calculate/',
+       type:'POST',
+       data:{
+           salary:$('#salary').val(),
+           tds:$('#tds').val(),
+           sa:$('#sa').val(),
+           ma:$('#ma').val(),
+           conveyance:$('#conveyance').val()
+       },   
+       success: function(response){
+           
+           $('#basic').html(response.pay[0]['basic'])
+           $('#ptax').html(response.pay[0]['ptax'])
+           $('#hra').html(response.pay[0]['hra'])
+           $('#td').html(response.pay[0]['tds'])
+           $('#special').html(response.pay[0]['sa'])
+           $('#con').html(response.pay[0]['conveyance'])
+           $('#medical').html(response.pay[0]['ma'])
+           $('#ge').html(response.pay[0]['gearning'])
+           $('#gd').html(response.pay[0]['gdeduction'])
+           $('#np').html(response.pay[0]['netpay'])
+
+       }
+   }) 
+    }
+    function loaddata(){
+         $.ajax({
+             url:'/adminapp/allowancedata/',
+             type:'GET',
+             success: function(response){
+               $('#sa').val(response.allowance[0].amount)
+               $('#ma').val(response.allowance[1].amount)
+               $('#conveyance').val(response.allowance[2].amount)
+               
+             }
+         })
+      }
+</script>
+{% endblock %}

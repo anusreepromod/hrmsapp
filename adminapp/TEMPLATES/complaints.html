@@ -1,6 +1,12 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   } 
+</script>
 <div class="page-content" style="padding-top:60px;padding-left:10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -44,10 +50,10 @@
     <div class="card">
         <div class="card-body py-0">
             <div class="table-responsive">
-                <table class="table table-striped mb-0 dataTable" >
+                <table class="table table-striped mb-0 dataTable"  id="table">
                     <thead>
                     <tr>
-                        
+                        <th width="10%">Sl.no</th>
                         <th width="20%">Complaint From</th>
                         <th width="20%">Complaint Against</th>
                        <th width="15%">Title</th>
@@ -57,7 +63,7 @@
                         </tr>
                     </thead>
                     <tbody class="font-style">
-                        {% for i in complaints %}
+                        <!-- {% for i in complaints %}
                         <tr>
                             <td>{{i.cf}}</td>
                             <td>{{i.ca}}</td>
@@ -69,7 +75,7 @@
                             <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons">delete</i></a>
                         </td>
                             </tr>
-                           {% endfor %}
+                           {% endfor %} -->
                            </tbody>
                 </table>
             </div>
@@ -96,26 +102,29 @@
             <div class="row">
                 <div class="col-md-12 ">
                             <div class="row">
-                                
+                                <div class="form-group col-lg-6">
+                                    
+                                    <input class="form-control" required="required" name="" type="text" id="id">
+                                </div>
                                     <div class="form-group col-lg-6">
                                         <label for="" class="form-control-label">Complaint From</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="Anu">
+                                        <input class="form-control" required="required" name="" type="text" id="cf">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="" class="form-control-label">Complaint Against</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="Vismay">
+                                        <input class="form-control" required="required" name="" type="text" id="ca">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="" class="form-control-label">Title</label>
-                                        <input class="form-control" name="" type="text" placeholder="Project Issues" >
+                                        <input class="form-control" name="" type="text" id="title" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="" class="form-control-label">Complaint Date</label>
-                                        <input class="form-control" name="" type="text" placeholder="28/7/2021" >
+                                        <input class="form-control" name="" type="text" id="cd" >
                                     </div>
                                         <div class="form-group col-md-12">
                                             <label for="" class="form-control-label">Description</label>
-                                        <textarea class="form-control" rows="2" name="" cols="50" id="" placeholder="lorem"></textarea>
+                                        <textarea class="form-control" rows="2" name="" cols="50" id="desc" placeholder="lorem"></textarea>
                                         </div>
                                 
                             </div>
@@ -123,13 +132,65 @@
                 </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="updatecomplain()">Update</button>
           <button type="button" class="btn btn-danger">Cancel</button>
         </div>
       </div>
     </div>
   </div>
-
+  <script>
+      function loaddata(){
+         $.ajax({
+             url:'/adminapp/fncomplain/',
+             type:'GET',
+             success: function(response){
+               $('.tr').remove()
+               for (i=0;i<response.complain.length;i++){
+                   $('#table').append("<tr class='tr'><td>"+response.complain[i].id+"</td><td>"+response.complain[i].cf+"</td><td>"+response.complain[i].ca+"</td><td>"+response.complain[i].title+"</td><td>"+response.complain[i].date+"</td><td>"+response.complain[i].desc+"</td><td><button data-toggle='modal' data-target='#viewModal' onclick='getcomplain("+response.complain[i].id+")'>Edit</button></td><td><button onclick='deldata("+response.complain[i].id+")'>Delete</button></td></tr>")
+               }
+             }
+         })
+      }
+      function getcomplain(uid){
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+         });
+         $.ajax({
+             url:'/adminapp/getcomplain/',
+             type:'POST',
+             data:{
+                 uid:uid,
+             },
+             success:function(response){
+               $('#id').val(response.complain[0].id)
+               $('#cf').val(response.complain[0].cf)
+               $('#ca').val(response.complain[0].ca)
+               $('#title').val(response.complain[0].title)
+               $('#cd').val(response.complain[0].date)
+               $('#desc').val(response.complain[0].desc)
+             }
+         })
+      }
+      function updatecomplain(){
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+         });
+         $.ajax({
+             url:'/adminapp/updatecomplain/',
+             type:'POST',
+             data:{
+               id:$('#id').val(),
+               cf:$('#cf').val(),
+               ca:$('#ca').val(),
+               title:$('#title').val(),
+               desc:$('#desc').val()
+             },
+             success: function(response){
+                 loaddata()
+             }
+         })
+      }
+  </script>
 
 
 {% endblock %}

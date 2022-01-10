@@ -3,7 +3,12 @@
 
 
 {% block content %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+</script>
 
 <div class="page-header" style="padding-top: 90px;">
         
@@ -13,11 +18,11 @@
                     <a class="btn btn-primary" href="/user/applyleave/" role="button">Apply leave</a>
                 </span> 
             </div>
-            <div class="btn-group">
+            <!-- <div class="btn-group">
                 <span class="btn addButtons">
                     <a class="btn btn-primary" href="/user/leavedetail/" role="button">Leave Details</a>
                 </span> 
-            </div>
+            </div> -->
         </div>
    
 </div>
@@ -30,38 +35,18 @@
             </div>
             <div class="card-body dash-card-body">
                 <div class="table-responsive">
-                    <table class="table  mb-0">
+                    <table class="table  mb-0" id="table">
                         <thead>
                         <tr>
                             <th>Leave Category</th>
-                            <th>Date Range</th>
-                            <th>No.of leaves</th>
+                            <th>Start Date </th>
+                            <th>End Date</th>
                             <th>Reason</th>
-                            <th>status</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Sick leave</td>
-                                <td>July 20, 2021</td>
-                                <td>1</td>
-                                <td>Sick</td>
-                                <td>Approved</td>
-                            </tr>
-                             <tr>
-                                <td>Annual leave</td>
-                                <td>July 30, 2021</td>
-                                <td>1</td>
-                                <td>Personal</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Annual leave</td>
-                                <td>Aug 2, 2021</td>
-                                <td>2</td>
-                                <td>Travelling to hometown</td>
-                                <td>Pending</td>
-                            </tr>
+                            
                              </tbody>
                     </table>
                 </div>
@@ -70,6 +55,19 @@
         
     </div>
 </div>
-
+<script>
+    function loaddata(){
+        $.ajax({
+           url:'/user/fnleave/',
+           type:'GET',
+           success:function(response){
+               $('.tr').remove()
+               
+               for(i=0;i<response.leave.length;i++)
+               $('#table').append("<tr class='tr'><td>"+response.leave[i].lc+"</td><td>"+response.leave[i].sd+"</td><td>"+response.leave[i].ed+"</td><td>"+response.leave[i].reason+"</td><td>"+response.leave[i].status+"</td></tr>")
+           } 
+        })
+    }
+</script>
 
 {% endblock %}

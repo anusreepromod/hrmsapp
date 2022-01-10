@@ -1,4 +1,4 @@
-{% extends "master.html" %}
+{% extends "masters.html" %}
 {% load static %}
 {% block content %}
 <div class="page-content" style="padding-top:40px;padding-left:10px;">
@@ -13,25 +13,26 @@
         </div>
     </div>
 <form method="POST" action="/adminapp/createleave/">
+    {% csrf_token %}
     <div class="row">
         <div class="col-md-12 ">
           <div class="card ">
               <div class="card-body ">
                   <div class="row">
                       <div class="form-group col-lg-6">
-                          <label for="" class="form-control-label">Employee</label><span class="text-danger pl-1">*</span>
-                          <input class="form-control" required id="employee" type="text" name="employee">
+                          <label for="" class="form-control-label">Employee Name</label><span class="text-danger pl-1">*</span>
+                          <input class="form-control" required id="empname" type="text" name="empname">
                       </div>
                       <div class="form-group col-lg-6">
                         <label for="" class="form-control-label">Employee Id</label><span class="text-danger pl-1">*</span>
-                        <input class="form-control" required id="employee" type="text" name="employeeid">
+                        <input class="form-control" required id="employee" type="text" name="empid">
                     </div>
                     <div class="form-group col-md-12">
                         <label class="col-md-12 control-label">
                             Leave Category <span class="text-danger pl-1" >*</span>
                         </label>
                         <div class="col-md-12">
-                            <select  class="form-control input-width-xlarge" required>
+                            <select  class="form-control input-width-xlarge" id="lcategory" name="lcategory" required>
                              <option value="">-- Select --</option>
                              {% for i in leave %}
 
@@ -121,14 +122,14 @@
       
                           <div class="form-group col-md-12">
                               <label for="" class="form-control-label">Leave Reason</label><span class="text-danger pl-1">*</span>
-                          <textarea class="form-control" rows="2" id="leavereason" cols="50" id="" name="leavereason"  required></textarea>
+                          <textarea class="form-control" rows="2" id="leavereason" cols="50" id="lreason" name="lreason"  required></textarea>
                           </div>
                           <div class="form-group col-md-12">
                               <label for="" class="form-control-label">Remark</label><span class="text-danger pl-1">*</span>
-                          <textarea class="form-control" rows="2" id="remark" cols="50" id="" name="remark" required></textarea>
+                          <textarea class="form-control" rows="2" id="remark" cols="50" id="remark" name="remark" required></textarea>
                           </div>
                   </div>
-                  <div class="modal-footer">
+                  <div >
                     <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="return createleave()">Create</button>
                     <button type="reset" class="btn btn-danger">Cancel</button>
                   </div>
@@ -137,6 +138,8 @@
               </div>
           </div>
       </div>
+      {{msg}}
 </form>
+{{msg}}
 </div>
 {% endblock %}

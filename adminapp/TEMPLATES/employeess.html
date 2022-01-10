@@ -1,0 +1,621 @@
+
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
+<div class="page-content" style="padding-top:60px;padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Employee
+</h5>
+                </div>
+            </div>
+            
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+               
+                  
+                <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search"  id="searchs" name="searchs">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="submit" onclick="search()">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                
+        </div>  
+   
+                <div class="btn-group">
+        <span class="btn addButtons">
+            <a class="btn btn-primary" href="/adminapp/addstaff/" role="button"> <i class="fa fa-plus">Add</i></a>
+        </span> 
+    </div>
+            </div>
+        </div>
+    </div><br>
+        <div class="row">
+<div class="col-12">
+    <div class="card">
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table  mb-0 dataTable" id="table">
+                    <thead>
+                    <tr>
+                        <th>Emp ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th width='25%'>Date Of Joining</th>
+                        <th width="25%">Action</th>
+                                                    </tr>
+                    </thead>
+                    <tbody>
+                       
+                        
+                        <!-- <tr> 
+                            <td >ABCD0{{i.id}}</td>
+                            <td >{{i.firstname}}</td>
+                            <td>{{i.email}}</td> 
+                            <td >{{i.department_id_id }}</td>
+                            <td >{{i.designation_id_id  }}</td>
+                            <td >{{i.doj }}</td>
+                            <td>
+                                <button onclick="edit('{{i.id}}')"><i class="material-icons">edit</i></button>
+                                <a href="/adminapp/editemployee/" class="edit-icon" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons">edit</i></a>
+                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                        -->
+                        
+                       </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="card ">
+                        <div class="card-header"><h6 class="mb-0">Personal Details</h6></div>
+                        <div class="card-body ">
+                            
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="form-control-label">First Name</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" required="required" name="firstname" type="text" value=""  id="fname">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Middle Name" class="form-control-label">Middle Name</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="mname" type="text" value="" id="mname">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Last Name" class="form-control-label">Last Name</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="lname" type="text" value="" id="lname" >
+                                </div>
+                                <div class="form-group col-md-12 ">
+                                    <label for="" class="form-control-label">Date Of Birth</label><span class="text-danger pl-1">*</span>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <select name="day" id="day1" style="width: 120px;">
+                                            <!-- <option value="">Day</option> -->
+                                            <!-- <script>
+                                                d=new Date('{{i.date}}').getDay()
+                                                alert(d)
+                                                document.write("<option value='"+d+"'>"+d+"</option>")
+                                            </script> -->
+                                            <script>
+                                                for(i=1;i<=31;i++){
+                                                    if(i<10){
+                                                        document.write("<option value='"+0+i+"'>"+0+i+"</option>")
+                                                    }else{
+                                                        document.write("<option value='"+i+"'>"+i+"</option>")
+                                                    }
+                                                    
+                                                }
+                                            </script>
+                                        </select>
+                                        <select name="month" id="month1"style="width: 120px;">
+                                            <!-- <script> 
+                                                m=new Date('{{i.date}}').getMonth()
+                                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                                document.write("<option value='"+m+"'>"+months[m]+"</option>")
+                                            </script> -->
+                                            <option value="">Month</option>
+                                            <script>
+                                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                                for(i=1;i<=12;i++){
+                                    if(i<10){
+                                        document.write("<option value='"+0+i+"'>"+months[i-1]+"</option>")
+                                    } else{
+                                        document.write("<option value='"+i+"'>"+months[i-1]+"</option>")
+                                    }
+                                    
+                                }
+                                            </script>
+                                        </select>
+                                        <select name="year" id="year1" style="width: 120px;">
+                                            <!-- <script>
+                                                y=new Date('{{i.date}}').getFullYear()
+                                                alert(y)
+                                                document.write("<option value='"+y+"'>"+y+"</option>")
+                                            </script> -->
+                                            <option value="">year</option>
+                                            <script>
+                                                for(i=1999;i<=(new Date().getFullYear());i++){
+                                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                                }
+                                            </script>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                
+                                <div class="col-md-12 ">
+                                    <div class="form-group ">
+                                        <label for="gender" class="form-control-label">Gender</label><span class="text-danger pl-1">*</span>
+                                        <div class="d-flex radio-check">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="male" value="Male" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label" for="g_male">Male</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="female" value="Female" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label" for="g_female">Female</label>
+                                            </div>
+                                            <!-- i -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="email" class="form-control-label">Email</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control"  name="email" type="email" id="email" value="" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password" class="form-control-label">Password</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control"  name="password" type="text" value="" id="password">
+                                </div>
+                                
+                            <!-- </div> -->
+                           
+                            <div class="form-group col-md-6">
+                                <label for="name" class="form-control-label">Father's Name</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control"  name="fathersname" type="text" value="" id="fathersname">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name" class="form-control-label">Marital Status</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control"  name="mstatus" type="text" value="" id="mstatus">
+                            </div>
+                            </div>
+                            
+                            <!-- <div class="form-group col-md-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Marital status
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Married</a>
+                                      <a class="dropdown-item" href="#">Single</a>
+                                      <a class="dropdown-item" href="#">Divorcee</a>
+                                    </div>
+                                  </div>
+                            </div> -->
+                        </div>       
+                        </div>
+                    </div>
+                
+                 <div class="col-md-12 ">
+                    <div class="card">
+                        <div class="card-header"><h6 class="mb-0">Official Details</h6></div>
+                        <div class="card-body employee-detail-create-body">
+                            <div class="row">
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="employee_id" class="form-control-label">Employee ID</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control"  name="employee_id" type="text" value="" id="empid">
+                                    </div>
+                                   
+                                    <div class="form-group col-md-6">
+                                        <label for="" class="form-control-label">Employee Type</label><span class="text-danger pl-1">*</span>
+                                        <input class="form-control"  name="" type="text" value="" id="emptype">
+                                    </div>
+                
+                                <div class="form-group col-md-6">
+                                    <label for="department_id" class="form-control-label">Department</label><span class="text-danger pl-1">*</span>
+                                    <select class="form-control" id="department" required="required" name="">
+                                        <option value="">Select any department</option>
+                                        {% for i in department %}
+                            <option value="{{i.id}}">{{i.department_name}}</option>          
+                            {% endfor %}
+                            </select>
+                                </div>
+                                
+                                <div class="form-group col-md-6" >
+                                    <label for="" class="form-control-label">Designation</label><span class="text-danger pl-1">*</span>
+                                    <select class="select2 form-control select2-multiple"  id="designation" name="designation" data-toggle="select2" data-placeholder="Select Designation" >
+                                        <option value="">Select any Designation</option>
+                                        {% for i in designation %}
+                                        <option value="{{i.id}}">{{i.designation_name}}</option>          
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                
+                                <div class="form-group col-md-12 ">
+                                    <label for="c" class="form-control-label">Date Of Joining</label><span class="text-danger pl-1">*</span>
+                                    <!-- <input class="form-control datepicker" required="required" name="company_doj" type="text" id="company_doj"> -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <select name="days" id="days" style="width: 120px;">
+                                            <option value="">Day</option>
+                                            <script>
+                                                for(i=1;i<=31;i++){
+                                                    if(i<10){
+                                                        document.write("<option value='"+0+i+"'>"+0+i+"</option>")
+                                                    }else{
+                                                        document.write("<option value='"+i+"'>"+i+"</option>")
+                                                    }
+                                                    
+                                                }
+                                            </script>
+                                        </select>
+                                        <select name="months" id="months"style="width: 120px;">
+                                            <option value="">Month</option>
+                                            <script>
+                                                var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                                for(i=1;i<=12;i++){
+                                    if(i<10){
+                                        document.write("<option value='"+0+i+"'>"+months[i-1]+"</option>")
+                                    } else{
+                                        document.write("<option value='"+i+"'>"+months[i-1]+"</option>")
+                                    }
+                                    
+                                }
+                                            </script>
+                                        </select>
+                                        <select name="year" id="years" style="width: 120px;">
+                                            <option value="">year</option>
+                                            <script>
+                                                for(i=1999;i<=(new Date().getFullYear());i++){
+                                                    document.write("<option value='"+i+"'>"+i+"</option>")
+                                                }
+                                            </script>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-group col-md-6 ">
+                                    <label for="" class="form-control-label">Employee Grade</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" required="required" name="" type="text" id="empgrade" value="">
+                                </div>
+                                <div class="form-group col-md-6 ">
+                                    <label for="" class="form-control-label">Shift </label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" required="required" name="" type="text" id="shift" value="">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row" style="padding-top:40px;">
+                <div class="col-md-12 ">
+                    <div class="card">
+                        <div class="card-header"><h6 class="mb-0">Documents</h6></div>
+                        <div class="card-body employee-detail-create-body">
+                                                    <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="float-left col-4">
+                                            <label for="document" class="float-left pt-1 form-control-label">Certificate  <span class="text-danger">*</span> </label>
+                                        </div>
+                                        <div class="float-right col-8">
+                                            <!-- <input type="hidden" name="" id="" value=""> -->
+                                            <div class="choose-file form-group">
+                                                <label for="">
+                                                    <div>Choose File</div>
+                                                    <input class="form-control   border-0"    name="" type="file" id="certificate" data-filename="">
+                                                </label>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="float-left col-4">
+                                            <label for="document" class="float-left pt-1 form-control-label">Resume <span class="text-danger">*</span> </label>
+                                        </div>
+                                        <div class="float-right col-8">
+                                            <!-- <input type="hidden" name="" id="" value=""> -->
+                                            <div class="choose-file form-group">
+                                                <label for="">
+                                                    <div>Choose File</div>
+                                                    <input class="form-control   border-0"   name="" type="file" id="resume" data-filename="">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="float-left col-4">
+                                            <label for="document" class="float-left pt-1 form-control-label">Photo </label>
+                                        </div>
+                                        <div class="float-right col-8">
+                                            <!-- <input type="hidden" name="" id="" value=""> -->
+                                            <div class="choose-file form-group">
+                                                <label for="">
+                                                    <div>Choose File</div>
+                                                    <input class="form-control   border-0"  name="" type="file" id="photo" data-filename="">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="card">
+                        <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
+                        
+                        <div class="card-body ">
+                            
+                            <div class="row">
+                              
+                              
+                                <div class="form-group col-md-12">
+                                    <label for="email" class="form-control-label">Personal Email</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control"  name="personalemail" type="email" id="pemail" value="{{i.personalemail}}" >
+                                </div>
+                                
+                                <div class="form-group" style="padding-left: 17px;padding-right: 18px;">
+                                    <label for="address" class="form-control-label">Address</label><span class="text-danger pl-1">*</span>
+                                    <textarea class="form-control" rows="2" name="address" cols="50" id="address" ></textarea>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="" type="text" id="city" value="">
+                
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="" type="text" id="country" value="">
+                
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="" type="text" id="pincode" value="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
+                                    <input class="form-control" name="" type="text" id="mobile" value="">
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" onclick="update()">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    
+    function loaddata(){
+       
+            $.ajax({
+                url:'/adminapp/fnemployeess/',
+                type: 'GET',
+                success: function(response){
+                    // console.log(response.user)
+                    $('.tr').remove()
+                    for(i=0;i<response.user.length;i++){
+                        // alert(response.user[i].id)
+                     $('#table').append("<tr class='tr'><td>"+response.user[i].id+"</td><td>"+response.user[i].fname+"</td><td>"+response.user[i].email+"</td><td>"+response.user[i].department+"</td><td>"+response.user[i].designation+"</td><td>"+response.user[i].doj+"</td><td><button onclick='deldata("+response.user[i].id+")'>Delete</button></td><td><button data-toggle='modal' data-target='#exampleModal' onclick='getdata("+response.user[i].id+")'>Update</button></td></tr>")
+             
+
+                    }
+                }
+            })  
+        }
+        function search(){
+            
+            $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+                url:'/adminapp/searchemployee/',
+                type: 'POST',
+                data:{
+                  search: $('#searchs').val()
+                },
+                success: function(response){
+                    
+                    $('.tr').remove()
+                    for(i=0;i<response.user.length;i++){
+                        
+                     $('#table').append("<tr class='tr'><td>"+response.user[i].id+"</td><td>"+response.user[i].fname+"</td><td>"+response.user[i].email+"</td><td>"+response.user[i].department+"</td><td>"+response.user[i].designation+"</td><td>"+response.user[i].doj+"</td><td><button onclick='deldata("+response.user[i].id+")'>Delete</button></td><td><button data-toggle='modal' data-target='#exampleModal' onclick='getdata("+response.user[i].id+")'>Update</button></td></tr>")
+             
+
+                    }
+                }
+            }) 
+        }
+        function getdata(uid){
+            $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            
+            $.ajax({
+                url: '/adminapp/getdata/',
+                type: 'POST',
+                data:{
+                    uid:uid,        
+                    
+                },
+                success:function(response){
+                    
+                 $('#fname').val(response.updata[0].fname)
+                 $('#mname').val(response.updata[0].mname)
+                 $('#lname').val(response.updata[0].lname)
+                 $('#email').val(response.updata[0].email)
+                 $('#password').val(response.updata[0].password)
+                 $('#fathersname').val(response.updata[0].fathersname) 
+                 $('#mstatus').val(response.updata[0].mstatus)
+                 $('#empid').val(response.updata[0].id)
+                 $('#emptype').val(response.updata[0].emptype)
+                 $('#empgrade').val(response.updata[0].empgrade)
+                 $('#shift').val(response.updata[0].shift)
+                 $('#pemail').val(response.updata[0].pemail)
+                 $('#address').val(response.updata[0].address)
+                 $('#city').val(response.updata[0].city)
+                 $('#country').val(response.updata[0].country)
+                 $('#pincode').val(response.updata[0].pincode)
+                 $('#mobile').val(response.updata[0].mobile)
+                 $('#certificate').val(response.updata[0].cer)
+                 $('#resume').val(response.updata[0].res)
+                 $('#photo').val(response.updata[0].photo)
+                 gen=response.updata[0].gender
+                 
+                 if(gen=='Male'){
+                     $("#male").prop("checked",true);
+                 }
+                 if (gen=='Female'){
+                     $('#female').prop("checked",true);
+                 }
+                 date= new Date(response.updata[0].date)
+                 
+                 year= date.getFullYear()
+                 day=date.getDate()
+                 if(day<10){
+                    $('#day1').val('0'+day)
+                 }
+                 else{
+                    $('#day1').val(day)
+                 }
+                 month=date.getMonth()
+                 
+                 $('#month1').val(month)
+                 $('#year1').val(year)
+                 doj= new Date(response.updata[0].doj)
+                 years= doj.getFullYear()
+                 days=doj.getDate()
+                 if(days<10){
+                    $('#days').val('0'+days)
+                 }
+                 else{
+                    $('#days').val(days)
+                 }
+                 months=doj.getMonth()
+                 
+                 $('#months').val(months)
+                 $('#years').val(years)
+                 department=response.updata[0].department
+                
+                 $('#department').val(department)
+                 designation=response.updata[0].designation
+                 $('#designation').val(designation)
+                 
+                
+              } 
+            })
+        }
+        function update(){
+           
+            $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+var data= new FormData()
+   data.append("resume",$("input[id^='resume']")[0].files[0]);
+   data.append("photo",$("input[id^='photo']")[0].files[0]);
+   data.append("certificate",$("input[id^='certificate']")[0].files[0]);
+   data.append("firstname",$('#fname').val());
+   data.append("mname",$('#mname').val());
+   data.append("lname",$('#lname').val());
+   data.append("day",$('#day1').val());
+   data.append("month",$('#month1').val());
+   data.append("year",$('#year1').val());
+   data.append("email",$('#email').val());
+   data.append("password",$('#password').val());
+   data.append("fathersname",$('#fathersname').val());
+   data.append("marital",$('#mstatus').val());
+   data.append("empid",$('#empid').val());
+   data.append("emptype",$('#emptype').val());
+   data.append("department",$('#department').val());
+   data.append("designation",$('#designation').val());
+   data.append("days",$('#days').val());
+   data.append("months",$('#months').val());
+   data.append("years",$('#years').val());
+   data.append("empgrade",$('#empgrade').val());
+   data.append("shift",$('#shift').val());
+   data.append("pemail",$('#pemail').val());
+   data.append("address",$('#address').val());
+   data.append("city",$('#city').val());
+   data.append("country",$('#country').val());
+   data.append("pincode",$('#pincode').val());
+   data.append("mobile",$('#mobile').val());
+   data.append("gender",$("input[name='gender']").val());
+            $.ajax({
+                url:'/adminapp/updatee/',
+                type:'POST',
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                data:data,
+                success:function(response){
+                    alert(response.msg)
+                //   loaddata()
+                  location.reload(true)
+                }
+            })
+        }
+        function deldata(id){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/adminapp/delemployee/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    loaddata()
+                }
+            })
+        }
+        
+</script>
+{% endblock %}

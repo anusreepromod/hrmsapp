@@ -1,7 +1,13 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -30,7 +36,7 @@
                                 </div>
                                
                             </div>
-                            <button type="submit" onclick="adds()">Add</button>
+                            <button type="submit" >Add</button>
                             {{ msg }}
                             {{ message }}
                         </div>
@@ -46,7 +52,7 @@
      <div style="padding-top: 40px;">
          <div class="card">
              <div class="card-body">
-                <table class="table">
+                <table class="table" id="table">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Id</th>
@@ -56,13 +62,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        {% for i in departments %}
-                      <tr>
-                        <td >{{ i.id }}</td>
-                        <td>{{ i.department_name }}</td>
-                        <td><a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a></td>
-                      </tr>
-                      {% endfor %}
+                        
                     </tbody>
                   </table>
              </div>
@@ -71,21 +71,36 @@
      </div>
 </div>
 <script>
+    function loaddata(){ 
+       $.ajax({
+           url:'/adminapp/fndepartment/',
+           type: 'GET',
+           success: function(response){
+               // console.log(response.user)
+               $('.tr').remove()
+               for(i=0;i<response.department.length;i++){
+                   // alert(response.user[i].id)
+                $('#table').append("<tr class='tr'><td>"+response.department[i].id+"</td><td>"+response.department[i].dname+"</td><td><button onclick='deldata("+response.department[i].id+")'>Delete</button></td></tr>")
+               }
+           }
+       })  
+   }
+   function deldata(id){
     $.ajaxSetup({
-        headers:{"X-CSRFToken":'{{csrf_token}}'}
-    });
-    function adds(){
-        $.ajax({
-            url:'/adminapp/department/',
-            type:'POST',
-            data: {
-                departments: $('#edepartments').val(),
-            },
-            success: function(response){
-                alert(response.msg)
-            }
-        })
-    }
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/adminapp/deldepartment/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    loaddata()
+                }
+            })
+        }
 </script>
 
 {% endblock %}

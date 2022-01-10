@@ -9,6 +9,7 @@
             <div class="card-header card-header-primary">
                 <h3 class="card-title">Notifications</h3>  
                   </div>
+                  {% for i in notify%}
                   <div class="card-body">
                       <div class="row">
                           <div class="col-lg-12">
@@ -17,19 +18,13 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <i class="material-icons">close</i>
                                 </button>
-                                <span data-notify="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda voluptatem omnis placeat sapiente, dolorem tempore similique quas totam velit vel.</span>
+                                <span data-notify="message">{{i.notify}}</span>
                               </div>
-                              <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda voluptatem omnis placeat sapiente, dolorem tempore similique quas totam velit vel.</span>
-                              </div>
+                              
                             </div>
                         </div>
                     </div>
-
+                   {% endfor %}
                 </div>
         </div>
     </div>

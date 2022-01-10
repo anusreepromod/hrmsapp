@@ -1,7 +1,13 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="page-content" style="padding-top: 60px;padding-left:10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -14,9 +20,9 @@
             <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
                 <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
             
-                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <input class="form-control py-2 border-right-0 border" type="search"  id="searchs">
                     <span class="input-group-append">
-                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button" onclick="search()">
                             <i class="fa fa-search"></i>
                       </button>
                     </span>
@@ -38,16 +44,15 @@
     <div class="card">
         <div class="card-body py-0">
             <div class="table-responsive">  
-                <table class="table table-striped mb-0 dataTable">
+                <table class="table table-striped mb-0 dataTable" id="table">
                     <thead>
                     <tr>
                         <th width="5%">Sl</th>
-                       <th width="10%">Employee</th>
+                       <th width="10%">Emp Id</th>
+                       <th width="10%">Emp Name</th>
                         <th width="10%">Leave Type</th>
-                        <th width="10%">Applied On</th>
                         <th width="10%">Start Date</th>
                         <th width="10%">End Date</th>
-                        <th width="10%">Total Days</th>
                         <th width="10%">Leave Reason</th>
                         <th width="10%">status</th>
                         <th width="10%">Action</th>
@@ -55,47 +60,8 @@
                     </thead>
                     <tbody>
                    <tr>
-                        <td>1</td>
-                        <td>test</td>
-                        <td>Casual Leave</td>
-                        <td>Mar 4, 2021</td>
-                        <td>Mar 7, 2021</td>
-                        <td>Mar 8, 2021</td>
-                        <td>2</td>
-                        <td>Lorem Ipsum</td>
-                        <td>Approved</td>
-                            <td>
-                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>test</td>
-                            <td>Casual Leave</td>
-                            <td>July 4, 2021</td>
-                            <td>July 5, 2020</td>
-                            <td>July 6, 2020</td>
-                            <td>2</td>
-                            <td>Lorem Ipsum</td>
-                            <td>Approved</td>
-                                <td>
-                                    <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>test</td>
-                                <td>Sick Leave</td>
-                                <td>July 22, 2021</td>
-                                <td>July 22, 2021</td>
-                                <td>July 22, 2021</td>
-                                <td>1</td>
-                                <td>Lorem Ipsum</td>
-                                <td>Approved</td>
-                                <td>
-                                <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">visibility</i></a>
-                                </td>
-                                </tr>
+                       
+                        
                         </tbody>
                 </table>
             </div>
@@ -124,34 +90,34 @@
                     <div class="card ">
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-12">
-                                    <table class="table table-striped mb-0 dataTable no-footer">
-                                        <tr role="row">
-                                            <th>Employee</th>
-                                            <td>test</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Leave Type </th>
-                                            <td>Casual Leave</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Appplied On</th>
-                                            <td>Mar 4, 2020</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Start Date</th>
-                                            <td>Mar 3, 2020</td>
-                                        </tr>
-                                        <tr>
-                                            <th>End Date</th>
-                                            <td>Mar 5, 2020</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Leave Reason</th>
-                                            <td>Lorem Ipsum</td>
-                                        </tr>
-                                        
-                                    </table>
+                                <!-- <div class="form-group col-lg-12">
+                 
+                                    <input class="form-control" required="required" name="" id="id" type="text"  >
+                                </div> -->
+                                <div class="form-group col-lg-6">
+                                    <label for="" class="form-control-label">Employee Id</label>
+                                    <input class="form-control" required="required" name="" id="empid" type="text" >
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="" class="form-control-label">Employee Name</label>
+                                    <input class="form-control" required="required" name="" id="empname" type="text" >
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="" class="form-control-label">Leave Type</label>
+                                    <input class="form-control" required="required" name="" type="text" id="lt">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">Start Date</label>
+                                    <input class="form-control" name="" type="text" id="sd" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">End Date</label>
+                                    <input class="form-control" name="" type="text" id="ed" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-control-label">Reason</label>
+                                    <input class="form-control" name="" type="text" id="reason" >
+                                </div>
                                 </div>
                             </div>
                             
@@ -159,10 +125,10 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Approve</button>
-          <button type="button" class="btn btn-danger">Reject</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="approve()">Approve</button>
+          <button type="button" class="btn btn-danger" onclick="reject()">Reject</button>
         </div>
       </div>
     </div>
@@ -213,5 +179,90 @@
                 return true;
             }
      }
+     function loaddata(){
+        $.ajax({
+            url:'/adminapp/fnmanageleave/',
+            type:'GET',
+            success: function(response){
+                $('.tr').remove()
+                for(i=0;i<response.mleave.length;i++){
+                    $('#table').append("<tr class='tr'><td>"+response.mleave[i].id+"</td><td>"+response.mleave[i].empid+"</td><td>"+response.mleave[i].empname+"</td><td>"+response.mleave[i].lcat+"</td><td>"+response.mleave[i].sd+"</td><td>"+response.mleave[i].ed+"</td><td>"+response.mleave[i].reason+"</td><td>"+response.mleave[i].status+"</td><td> <button data-toggle='modal' data-target='#viewModal' onclick='getleave("+response.mleave[i].id+")' >View</button></td></tr>")
+                }
+            }
+        })
+     }
+     function search(){
+            
+            $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+                url:'/adminapp/searchleave/',
+                type: 'POST',
+                data:{
+                  search: $('#searchs').val()
+                },
+                success: function(response){
+                    
+                    $('.tr').remove()
+                    for(i=0;i<response.mleave.length;i++){
+                    $('#table').append("<tr class='tr'><td>"+response.mleave[i].id+"</td><td>"+response.mleave[i].empid+"</td><td>"+response.mleave[i].empname+"</td><td>"+response.mleave[i].lcat+"</td><td>"+response.mleave[i].sd+"</td><td>"+response.mleave[i].ed+"</td><td>"+response.mleave[i].reason+"</td><td>"+response.mleave[i].status+"</td><td> <button data-toggle='modal' data-target='#viewModal' onclick='getleave("+response.mleave[i].id+")' >View</button></td></tr>")
+                }
+                }
+            }) 
+        }
+     function getleave(uid){
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/getleave/',
+    type:'POST',
+    data:{
+        uid:uid
+    },
+    success: function(response){
+        $('#empid').val(response.leave[0].empid)
+        $('#empname').val(response.leave[0].empname)
+        $('#lt').val(response.leave[0].ltype)
+        $('#sd').val(response.leave[0].sd)
+        $('#ed').val(response.leave[0].ed)
+        $('#reason').val(response.leave[0].reason)
+    }
+})
+     }
+     function approve(){ 
+         $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/approveleave/',
+    type:'POST',
+    data:{
+        
+    },
+    success: function(response){
+        alert(response.msg)
+        location.reload(true)
+    }
+    })
+     }
+     function reject(){ 
+         $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/rejectleave/',
+    type:'POST',
+    data:{
+        
+    },
+    success: function(response){
+        alert(response.msg)
+        location.reload(true)
+    }
+    })
+     }
   </script>
+  
 {% endblock %}

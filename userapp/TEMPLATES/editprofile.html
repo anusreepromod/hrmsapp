@@ -12,24 +12,25 @@
                         <h4 class="card-title">Edit Profile</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="/user/editprofile/">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Employee id</label>
-                                        <input type="text" class="form-control" placeholder="ABCD-001" readonly>
+                                        <input type="text" class="form-control" value="{{emp.id}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Username</label>
-                                        <input type="text" class="form-control" placeholder="anusree" readonly>
+                                        <input type="text" class="form-control" value="{{emp.firstname}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Email address</label>
-                                        <input type="email" class="form-control" placeholder="employee@abcdsoftware.com" readonly>
+                                        <input type="email" class="form-control" value="{{email.username}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -37,51 +38,66 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">First Name</label>
-                                        <input type="text" class="form-control" placeholder="Anusree" readonly>
+                                        <input type="text" class="form-control" value="{{emp.firstname}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Middle Name</label>
-                                        <input type="text" class="form-control" placeholder="Palakkil" readonly>
+                                        <input type="text" class="form-control" value="{{emp.middlename}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Irinave" readonly>
+                                        <input type="text" class="form-control" value="{{emp.lastname}}" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Personal Email</label>
+                                        <input type="text" class="form-control" id="pemail" name="pemail" value="{{contact.personalemail}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Address</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="address" name="address" value="{{contact.address}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">City</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="city" name="city" value="{{contact.city}}">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Country</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="country" name="country" value="{{contact.country}}">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Pin Code</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{contact.pincode}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Mobile</label>
+                                        <input type="text" class="form-control" id="mobile" name="mobile" value="{{contact.mobile}}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>About Me</label>
@@ -91,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary pull-right" onclick="updateprofile()">Update Profile</button>
                            
                         </form>

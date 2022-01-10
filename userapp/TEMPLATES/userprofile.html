@@ -3,6 +3,12 @@
 
 
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    window.onload=function(){
+        loaddata()
+    } 
+ </script>
 <div style="padding-top: 90px;padding-left: 10px;">
     <h3>User Details</h3> 
 </div><br>
@@ -29,7 +35,7 @@
                                                 First Name 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Anusree</span>
+                                                <span id="name"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +45,7 @@
                                                 Middle Name 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Palakkil</span>
+                                                <span id="mname"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +55,7 @@
                                                 Last Name 
                                             </label>
                                             <div class="col-md-12 control-label textLeft ">
-                                                <span >Irinave</span>
+                                                <span id="lname"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +68,7 @@
                                                 Father's Name 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Krishnan</span>
+                                                <span id="fname" ></span>
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +79,7 @@
                                                 Date of Birth 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >23/06/1984</span>
+                                                <span id="dob"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +89,7 @@
                                                 Gender 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Female</span>
+                                                <span id="gender" ></span>
                                             </div>
                                         </div>
                                     </div>
@@ -95,23 +101,11 @@
                                                 Marital Status 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblMaritalStatus">Married</span>
+                                                <span id="mstatus"></span>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-md-12 control-label" style="color: grey;">
-                                                Photo 
-                                            </label>
-                                            <div class="col-md-12">
-
-                                                <img src=""  alt="Photo"  />
-
-                                            </div>
-                                        </div>
-                                    </div>
                                     
                                 </div>
                             </div>
@@ -134,7 +128,7 @@
                                                 Employee Type 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span>Permanent</span>
+                                                <span id="etype"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +138,7 @@
                                                 Department 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Human Resource</span>
+                                                <span id="dept"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +148,7 @@
                                                 Designation 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >Team Lead</span>
+                                                <span id="designation"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +160,7 @@
                                                 Employee Grade
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >A</span>
+                                                <span id="grade" ></span>
                                             </div>
                                         </div>
                                     </div>
@@ -176,7 +170,7 @@
                                                 Date of join
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >04/01/2016</span>
+                                                <span id="doj" ></span>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +182,7 @@
                                                 Shift 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span >9:00 AM - 07:00 PM</span>
+                                                <span id="shift"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +210,7 @@
                                                 Address
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblCountry">Parijatha Apt</span>
+                                                <span id="address"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -226,7 +220,7 @@
                                                 City
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblState">Bangalore</span>
+                                                <span id="city"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -236,7 +230,7 @@
                                                 State
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblCity">KA</span>
+                                                <span id="state"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -248,7 +242,7 @@
                                                 Country
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblAddress">India</span>
+                                                <span id="Country"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -258,7 +252,7 @@
                                                 Pin Code 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblPinCode">560103</span>
+                                                <span id="pincode"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -268,29 +262,20 @@
                                                 Mobile 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblMobile">08160027317</span>
+                                                <span id="mobile"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label class="col-md-12 control-label" style="color: grey;">
-                                                Phone
+                                                Personal Email 
                                             </label>
                                             <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblPhone">1234567890</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-md-12 control-label" style="color: grey;">
-                                                Email 
-                                            </label>
-                                            <div class="col-md-12 control-label textLeft">
-                                                <span id="cphBody_lblEmail">employee@abcdsoftware.com</span>
+                                                <span id="pemail"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -303,4 +288,34 @@
               </form>
     </div>    
 </div>  
+<script>
+    function loaddata(){
+         $.ajax({
+             url:'/user/getuserprofile/',
+             type:'GET',
+             success: function(response){
+               $('#name').text(response.edetails[0].name)
+               $('#mname').text(response.edetails[0].mname)
+               $('#lname').text(response.edetails[0].lname)
+               $('#fname').text(response.edetails[0].fname)
+               $('#dob').text(response.edetails[0].dob)
+               $('#gender').text(response.edetails[0].gender)
+               $('#mstatus').text(response.edetails[0].mstatus)
+               $('#etype').text(response.edetails[0].etype)
+               $('#dept').text(response.edetails[0].dept)
+               $('#designation').text(response.edetails[0].des)
+               $('#grade').text(response.edetails[0].grade)
+               $('#doj').text(response.edetails[0].doj)
+               $('#shift').text(response.edetails[0].shift)
+               $('#address').text(response.cdetails[0].address)
+               $('#city').text(response.cdetails[0].city)
+               $('#country').text(response.cdetails[0].country)
+               $('#pincode').text(response.cdetails[0].pincode)
+               $('#mobile').text(response.cdetails[0].mobile)
+               $('#pemail').text(response.cdetails[0].pemail)
+             }
+
+         })
+      }
+</script>
 {% endblock %}

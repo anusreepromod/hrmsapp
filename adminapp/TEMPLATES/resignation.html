@@ -1,6 +1,13 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="page-content" style="padding-top: 100px;padding-right:90px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -21,19 +28,14 @@
                     </span>
                 
         </div>  
-                <div class="all-button-box row d-flex justify-content-end" style="padding-right:68px;">
+                <!-- <div class="all-button-box row d-flex justify-content-end" style="padding-right:68px;">
             <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
                 <div class="btn-group">
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-plus">Add</i>
-                      </button> -->
-                    <!-- <span class="btn addButtons">
-                        
-                    </span>  -->
+                    
                     <a href="/adminapp/createresignation/" class="btn btn-primary btn-small active" role="button" aria-pressed="true"><i class="fa fa-plus">Add</i></a>
                 </div>
     </div>
-    </div>
+    </div> -->
             </div>
         </div>
         
@@ -43,21 +45,22 @@
     <div class="card">
         <div class="card-body py-0">
             <div class="table-responsive">
-                <table class="table table-striped mb-0 dataTable" >
+                <table class="table table-striped mb-0 dataTable" id="table">
                     <thead>
                     <tr>
-                        <th width="5%">Sl.no</th>
+                        <th width="15%">Sl.no</th>
                         <th width="15%">Employee Id</th>
                         <th width="15%">Employee Name</th>
                        <th width="15%">Resignation Date</th>
                         <th width="15%"> Notice period</th>
                         <th width="15%">Description</th>
+                        <th width="15%">Status</th>
                         <th width="15%">Action</th>
                         </tr>
                     </thead>
                     <tbody class="font-style">
-                        <tr>
-                            <td>1</td>
+                        <!-- <tr>
+                            
                             <td>ABCD0001</td>
                             <td>Anusree</td>
                           <td>Mar 1, 2021</td>
@@ -67,19 +70,8 @@
                                 <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
                             <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons">delete</i></a>
                         </td>
-                            </tr>
-                           <tr>
-                               <td>2</td>
-                               <td>ABCD002</td>
-                               <td>Thanmay</td>
-                            <td>Mar 2, 2021</td>
-                            <td>30 Days</td>
-                            <td>Lorem Ipsum</td>
-                          <td>
-                            <a href="#viewModal"  data-toggle="modal" data-target="#viewModal" data-original-title="View" ><i class="material-icons">edit</i></a>
-                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons">delete</i></a>
-                            </td>
-                            </tr>
+                            </tr> -->
+                          
                            </tbody>
                 </table>
             </div>
@@ -107,25 +99,29 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="row">
+                                    <div class="form-group col-lg-12">
+                 
+                                        <input class="form-control" required="required" name="" id="id" type="text" hidden >
+                                    </div>
                                     <div class="form-group col-lg-6">
                                         <label for="" class="form-control-label">Employee Id</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="ABCD001">
+                                        <input class="form-control" required="required" name="" id="empid" type="text" >
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="" class="form-control-label">Employee Name</label>
-                                        <input class="form-control" required="required" name="" type="text" placeholder="Anusree">
+                                        <input class="form-control" required="required" name="" type="text" id="empname">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="" class="form-control-label">Resignation Date</label>
-                                        <input class="form-control" name="" type="text" placeholder="Mar 1, 2021" >
+                                        <input class="form-control" name="" type="text" id="resdate" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="" class="form-control-label">Notice Period</label>
-                                        <input class="form-control" name="" type="text" placeholder="30days" >
+                                        <input class="form-control" name="" type="text" id="np" >
                                     </div>
                                         <div class="form-group col-md-12">
                                             <label for="" class="form-control-label">Description</label>
-                                        <textarea class="form-control" rows="2" name="" cols="50" id="" placeholder="lorem"></textarea>
+                                        <textarea class="form-control" rows="2" name="" cols="50" id="desc" ></textarea>
                                         </div>
                                 </div>
                             </div>
@@ -136,12 +132,119 @@
                 </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal">Approve</button>
-          <button type="reset" class="btn btn-danger">Reject</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="updateresignation()">Edit</button>
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="approve()">Approve</button>
+          <button type="reset" class="btn btn-danger" onclick="reject()">Reject</button>
         </div>
       </div>
     </div>
   </div>
+<script>
+     
+    function loaddata(){ 
+       $.ajax({
+           url:'/adminapp/fnresignations/',
+           type: 'GET',
+           success: function(response){
+               // console.log(response.user)
+               $('.tr').remove()
+               for(i=0;i<response.resign.length;i++){
+                   // alert(response.user[i].id)
+                $('#table').append("<tr class='tr'><td>"+response.resign[i].id+"</td><td>"+response.resign[i].empid+"</td><td>"+response.resign[i].employeename+"</td><td>"+response.resign[i].resignationdate+"</td><td>"+response.resign[i].noticeperiod+"</td><td>"+response.resign[i].description+"</td><td>"+response.resign[i].status+"</td><td></td><td><button data-toggle='modal' data-target='#viewModal' onclick='getresignation("+response.resign[i].id+")'>Edit</button></td></tr>")
+        
 
+               }
+           }
+       })  
+   }
+   function getresignation(uid){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+    $.ajax({
+        url:'/adminapp/getresignation/',
+        type:'POST',
+        data:{
+            uid:uid,
+        },
+        success: function(response){
+            $('#id').val(response.res[0].id)
+            $('#empid').val(response.res[0].empid)
+            $('#empname').val(response.res[0].empname)
+            $('#resdate').val(response.res[0].resdate)
+            $('#np').val(response.res[0].np)
+            $('#desc').val(response.res[0].desc)
+        }
+    })
+   }
+   function updateresignation(){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+    $.ajax({
+        url:'/adminapp/updateresignation/',
+        type:'POST',
+        data:{
+            id:$('#id').val(),
+            empid:$('#empid').val(),
+            empname:$('#empname').val(),
+            resdate:$('#resdate').val(),
+            np:$('#np').val(),
+            desc:$('#desc').val()
+        },
+        success: function(response){
+            loaddata()
+        }
+    })
+   }
+//    function deldata(id){
+//     $.ajaxSetup({
+//   headers: { "X-CSRFToken": '{{csrf_token}}' }
+// });
+//             $.ajax({
+//                 url:'/adminapp/delresignation/',
+//                 type: 'POST',
+//                 data:{
+//                     id:id
+//                 },
+//                 success: function(response){
+//                     alert(response.msg)
+//                     loaddata()
+//                 }
+//             })
+//         }
+function approve(){ 
+         $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/approveresignation/',
+    type:'POST',
+    data:{
+        
+    },
+    success: function(response){
+        alert(response.msg)
+        location.reload(true)
+    }
+    })
+     }
+     function reject(){ 
+         $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/rejectresignation/',
+    type:'POST',
+    data:{
+        
+    },
+    success: function(response){
+        alert(response.msg)
+        location.reload(true)
+    }
+    })
+     }
+</script>
 
 {% endblock %}

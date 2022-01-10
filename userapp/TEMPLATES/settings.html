@@ -12,13 +12,14 @@
                         <h4 class="card-title">Change Password</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="/user/settings/" method="POST">
+                            {% csrf_token %}
                             
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Old Password</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id='opassword' name='opassword' >
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">New Password</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id='newpassword' name='newpassword'>
                                     </div>
                                 </div>   
                             </div>
@@ -34,15 +35,25 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Confirm Password</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="cpassword" name="cpassword">
                                     </div>
                                 </div>   
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">Update Password</button>
+                            <button type="submit" class="btn btn-primary pull-right" onclick="cpass()">Update Password</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
-
+            <script>
+                function cpass(){
+                    npassword= document.getElementById('newpassword').value;
+              cpassword=document.getElementById('cpassword').value;
+              if(npassword!=cpassword){
+                  alert("Password mismatch");
+                  
+              }
+                }
+              
+            </script>
 {% endblock %}

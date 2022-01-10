@@ -1,0 +1,195 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
+<div class="page-content" style="padding-top: 100px;padding-right:90px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Resignation
+</h5>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <!-- <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                
+        </div>   -->
+                <div class="all-button-box row d-flex justify-content-end" style="padding-right:68px;">
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                <div class="btn-group">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-plus">Add</i>
+                      </button> -->
+                    <!-- <span class="btn addButtons">
+                        
+                    </span>  -->
+                    <a href="/user/addresignation/" class="btn btn-primary btn-small active" role="button" aria-pressed="true"><i class="fa fa-plus">Resignation</i></a>
+                </div>
+    </div>
+    </div>
+            </div>
+        </div>
+        
+    </div><br>
+        <div class="row">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0 dataTable" id="table">
+                    <thead>
+                    <tr>
+                        <th width="15%">Sl.no</th>
+                        <th width="15%">Employee Id</th>
+                        <th width="15%">Employee Name</th>
+                       <th width="15%">Resignation Date</th>
+                        <th width="15%"> Notice period</th>
+                        <th width="15%">Description</th>
+                        <th width="15%">Status</th>
+                        <th width="15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-style">
+                       
+                          
+                           </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- view modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resignation Action</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                 
+                                        <input class="form-control" required="required" name="" id="id" type="text" hidden >
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label for="" class="form-control-label">Employee Id</label>
+                                        <input class="form-control" required="required" name="" id="empid" type="text" >
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label for="" class="form-control-label">Employee Name</label>
+                                        <input class="form-control" required="required" name="" type="text" id="empname">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" class="form-control-label">Resignation Date</label>
+                                        <input class="form-control" name="" type="text" id="resdate" >
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" class="form-control-label">Notice Period</label>
+                                        <input class="form-control" name="" type="text" id="np" >
+                                    </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="" class="form-control-label">Description</label>
+                                        <textarea class="form-control" rows="2" name="" cols="50" id="desc" ></textarea>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                        </div>       
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="updateresignation()">Edit</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+     
+    function loaddata(){ 
+       $.ajax({
+           url:'/user/fnresignations/',
+           type: 'GET',
+           success: function(response){
+               // console.log(response.user)
+               $('.tr').remove()
+               for(i=0;i<response.resign.length;i++){
+                   // alert(response.user[i].id)
+                $('#table').append("<tr class='tr'><td>"+response.resign[i].id+"</td><td>"+response.resign[i].empid+"</td><td>"+response.resign[i].employeename+"</td><td>"+response.resign[i].resignationdate+"</td><td>"+response.resign[i].noticeperiod+"</td><td>"+response.resign[i].description+"</td><td>"+response.resign[i].status+"</td><td><button data-toggle='modal' data-target='#viewModal' onclick='getresignation("+response.resign[i].id+")'>Edit</button></td></tr>")
+        
+
+               }
+           }
+       })  
+   }
+   function getresignation(uid){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+    $.ajax({
+        url:'/user/getresignation/',
+        type:'POST',
+        data:{
+            uid:uid,
+        },
+        success: function(response){
+            $('#id').val(response.res[0].id)
+            $('#empid').val(response.res[0].empid)
+            $('#empname').val(response.res[0].empname)
+            $('#resdate').val(response.res[0].resdate)
+            $('#np').val(response.res[0].np)
+            $('#desc').val(response.res[0].desc)
+        }
+    })
+   }
+   function updateresignation(){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+    $.ajax({
+        url:'/user/updateresignation/',
+        type:'POST',
+        data:{
+            id:$('#id').val(),
+            empid:$('#empid').val(),
+            empname:$('#empname').val(),
+            resdate:$('#resdate').val(),
+            np:$('#np').val(),
+            desc:$('#desc').val()
+        },
+        success: function(response){
+            loaddata()
+        }
+    })
+   }
+   
+</script>
+  {% endblock %}

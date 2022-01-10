@@ -2,7 +2,12 @@
 {% load static %}
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="page-content" style="padding-top:60px;padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -38,7 +43,7 @@
     <div class="card">
         <div class="card-body py-0">
             <div class="table-responsive">
-                <table class="table  mb-0 dataTable">
+                <table class="table  mb-0 dataTable" id="table">
                     <thead>
                     <tr>
                         <th>Emp ID</th>
@@ -50,10 +55,10 @@
                         <th width="25%">Action</th>
                                                     </tr>
                     </thead>
-                    <!-- <tbody>
-                        {% for i in user%}
+                    <tbody>
+                       
                         
-                        <tr> 
+                        <!-- <tr> 
                             <td >ABCD0{{i.id}}</td>
                             <td >{{i.firstname}}</td>
                             <td>{{i.email}}</td> 
@@ -66,9 +71,9 @@
                                 <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="Delete"></a><i class="material-icons">delete</i></a>
                             </td>
                         </tr>
-                        {% endfor %}
+                        -->
                         
-                       </tbody> -->
+                       </tbody>
                 </table>
             </div>
         </div>
@@ -79,43 +84,65 @@
 </div>
 </div>
 </div>
-
-{% endblock %}
-
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
-    // function loaddata(){
-    //         $.ajax({
-    //             url:'/adminapp/employees/',
-    //             type: 'GET',
-    //             success: function(response){
-    //                 // console.log(response.user)
-    //                 $('.tr').remove()
-    //                 for(i=0;i<response.user.length;i++){
-    //                  $('#table').append("<tr class='tr'><td>"+response.user[i].id+"</td><td>"+response.datas[i].fname+"</td><td>"+response.datas[i].email+"</td><td>"+response.datas[i].department+"</td><td>"+response.datas[i].designation+"</td><td>"+response.datas[i].doj+"</td><td><button onclick='deldata("+response.user[i].id+")'>Delete</button></td><td><button data-toggle='modal' data-target='#exampleModal' onclick='updatedata("+response.datas[i].id+")'>Update</button></td></tr>")
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+    function loaddata(){
+       
+            $.ajax({
+                url:'/adminapp/employee/',
+                type: 'GET',
+                success: function(response){
+                    // console.log(response.user)
+                    $('.tr').remove()
+                    for(i=0;i<response.user.length;i++){
+                        // alert(response.user[i].id)
+                     $('#table').append("<tr class='tr'><td>"+response.user[i].id+"</td><td>"+response.user[i].fname+"</td><td>"+response.user[i].email+"</td><td>"+response.user[i].department+"</td><td>"+response.user[i].designation+"</td><td>"+response.user[i].doj+"</td><td><button onclick='deldata("+response.user[i].id+")'>Delete</button></td><td><button data-toggle='modal' data-target='#exampleModal' onclick='getdata("+response.user[i].id+")'>Update</button></td></tr>")
              
 
-    //                 }
-    //             }
-    //         })
-    //     }
-    // $.ajaxSetup({
- 	//  		headers: { "X-CSRFToken": '{{csrf_token}}' }
-	// 	});
-    //     function edit(id){
-    //         alert(id)
-    //         $.ajax({
-    //         url: '/adminapp/editemp/',
-    //         type:'POST',
-    //         data:{
-    //             id:id
-    //         },
-    //         success:function(response){
-    //               console.log(response.msg)
-    //           }
-
-    //     })
-    //     }
+                    }
+                }
+            })  
+        }
+        function getdata(uid){
+            // alert("hi")
+            $.ajax({
+                url: '/adminapp/getdata/',
+                type: 'POST',
+                data:{
+                    uid:uid,        
+                    
+                },
+                success:function(response){
+                 alert("hello")
+                //   $('#upid').val(response.updata[0].id)
+                //  $('#fname').val(response.updata[0].fname)
+                //  $('#pemail').val(response.updata[0].pemail)
+                
+                
+              } 
+            })
+        }
         
 </script>
-
+{% endblock %}

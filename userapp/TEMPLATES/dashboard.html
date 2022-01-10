@@ -1,16 +1,22 @@
 {% extends "master.html" %}
 {% load static %}
-
-
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    window.onload=function(){
+        getmeeting()
+        getdata()
+    }
+ </script>
 <div class="content" style="padding-top: 80px;">
     <div>
+        
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <p class="card-category">Salary</p>
-                        <h3 class="card-title">45000
+                        <h3 class="card-title" id="salary">
                         </h3>
                     </div>
                 </div>
@@ -20,7 +26,7 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <p class="card-category">Holiday</p>
-                            <h3 class="card-title">24</h3>
+                            <h3 class="card-title" id="holiday"></h3>
                             
                         </div>
                     </div>
@@ -31,7 +37,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-danger card-header-icon">
                         <p class="card-category">Casual Leave</p>
-                        <h3 class="card-title">12</h3>
+                        <h3 class="card-title" id="casual"></h3>
                     </div>
                 </div>
             </div>
@@ -39,7 +45,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-danger card-header-icon">
                         <p class="card-category">Sick Leave</p>
-                        <h3 class="card-title">6</h3>
+                        <h3 class="card-title" id='sick'></h3>
                     </div>
                 </div>
             </div>
@@ -55,13 +61,41 @@
                         <center>
                             <div class="row">
                                 <div class="col-md-6 float-right border-right">
-                                    <form method="" accept-charset="UTF-8"><input name="" type="hidden" value="">
-                                     <button type="submit" value="0" name="in" id="check_in" class="btn-create badge-success" onclick="checkin()">CHECK IN</button>
-                                 </form>
+                                    
+                                     <button type="submit"  name="in" id="checkin" class="btn-create badge-success" onclick="checkin(new Date())" >CHECK IN</button>
+  
                                 </div>
+                                <script>
+                                     
+                                    function checkin(date){
+                                       
+                                        $.ajaxSetup({
+                                            headers: { "X-CSRFToken": '{{csrf_token}}' }
+                                            });
+                                            // alert(date)
+                                            year=date.getFullYear()
+                                            month=date.getMonth()+1
+                                            day=date.getDate()
+                                            fulldate=+year+'-'+month+'-'+day
+                                            // alert(fulldate)
+                                            time=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+                                            alert(typeof(time)),
+                                            $.ajax({ 
+                                                url: '/user/getcheckin/',
+                                                type:'POST',
+                                                data:{
+                                                    date:fulldate,
+                                                    time:time
+                                                },
+                                                success: function(response){
+                                                    alert(msg)
+                                                }
+                                            })
+                                    }
+                                </script>
                                 <div class="col-md-6 float-left">
-                                <button type="submit" value="1" name="out" id="check_out" class="btn-create badge-danger " onclick="checkout()" >CHECK OUT</button>
-                                </form>
+                                <button type="submit"  name="out" id="checkout" class="btn-create badge-danger " onclick="checkout(new Date())" >CHECK OUT</button>
+                                
                                 </div>
                             </div>
                         </center>
@@ -72,7 +106,7 @@
         </div>
     
         <div class="row" style="padding-top: 70px;">
-            <div class="col-lg-5">
+            <!-- <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header">
                         <h4>Calender</h4>
@@ -157,24 +191,26 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-7">
+            </div> -->
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Meeting List</h4>
                     </div>
                     <div class="card-body dash-card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped mb-0">
+                            <table class="table table-striped mb-0" id="table">
                                 <thead>
                                 <tr>
+                                    <th>Sl.no</th>
                                     <th>Meeting title</th>
                                     <th>Meeting Date</th>
                                     <th>Meeting Time</th>
+                                    <th>Agenda</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                                                    <tr>
+                                                                    <!-- <tr>
                                         <td>Company Rules</td>
                                         <td>July 30, 2021</td>
                                         <td>4:30 PM</td>
@@ -183,7 +219,7 @@
                                         <td>New Technology</td>
                                         <td>Aug 2, 2021</td>
                                         <td>3:20 PM</td>
-                                    </tr>
+                                    </tr> -->
                                                                 </tbody>
                             </table>
                         </div>
@@ -200,11 +236,51 @@
     </div>
 </div>
 <script>
-    function checkin(){
-        alert("Welcome to ABCD Software")
+    function checkout(date){
+       $.ajaxSetup({
+                headers: { "X-CSRFToken": '{{csrf_token}}' }
+                });
+                
+            time=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+            alert(typeof(time)),
+            $.ajax({ 
+               url: '/user/getcheckout/',
+               type:'POST',
+               data:{
+        
+                time:time
+                    },
+                success: function(response){
+                     alert(response.msg)
+                            }
+                            })
+                            }
+
+    function getmeeting(){
+        $.ajax({
+           url:'/user/getmeeting/',
+           type:'GET',
+           success:function(response){
+               $('.tr').remove()
+               
+               for(i=0;i<response.meet.length;i++)
+               $('#table').append("<tr class='tr'><td>"+response.meet[i].id+"</td><td>"+response.meet[i].mt+"</td><td>"+response.meet[i].md+"</td><td>"+response.meet[i].time+"</td><td>"+response.meet[i].agenda+"</td></tr>")
+           } 
+        })
     }
-    function checkout(){
-        alert("Good bye!")
-    }
+   
+       function getdata(){
+         $.ajax({
+             url:'/user/getdatas/',
+             type:'GET',
+             success:function(response){
+                 $('#salary').text(response.salary)
+                 $('#holiday').text(response.holiday)
+                 $('#sick').text(response.sick)
+                 $('#casual').text(response.casual)
+             }
+         })
+       }
+   
 </script>
         {% endblock %}

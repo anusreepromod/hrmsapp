@@ -12,7 +12,8 @@
             </div>
         </div>
     </div>
-    <form method="POST"  action="">
+    <form method="POST"  action="/adminapp/createpromotion/">
+        {% csrf_token %}
         <div class="row" style="padding-top: 40px;">
             <div class="col-md-12 ">
                 <div class="card ">
@@ -26,11 +27,11 @@
                                             </div>
                                             <div class="form-group col-lg-4">
                                                 <label for="" class="form-control-label">Employee First Name</label><span class="text-danger pl-1">*</span>
-                                                <input class="form-control" required name="employeename" type="text" >
+                                                <input class="form-control" required name="employeefname" type="text" >
                                             </div>
                                             <div class="form-group col-lg-4">
                                                 <label for="" class="form-control-label">Employee Last Name</label><span class="text-danger pl-1">*</span>
-                                                <input class="form-control" required name="employeename" type="text" >
+                                                <input class="form-control" required name="employeelname" type="text" >
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="form-control-label">Designation</label><span class="text-danger pl-1">*</span>
@@ -61,5 +62,6 @@
             </div>
         </div>
     </form>
+    {{ msg }}
 </div>
 {% endblock %}

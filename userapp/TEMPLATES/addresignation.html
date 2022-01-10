@@ -1,0 +1,56 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<div class="page-content" style="padding-top:40px;padding-left:10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Create Resignation
+                 </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="POST"  action="/user/addresignation/">
+        {% csrf_token %}
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-md-12 ">
+                <div class="card ">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="" class="form-control-label">Employee Id</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" required id="employeeid" name="employeeid" type="text" value="{{user.id}}" readonly>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="" class="form-control-label">Employee Name</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" required id="employeename" name="employeename" type="text" value="{{user.firstname}}" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="" class="form-control-label">Resignation Date</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control" id="resignationdate" name="resignationdate" required type="text" placeholder="12/01/2022" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="" class="form-control-label">Notice Period</label><span class="text-danger pl-1">*</span>
+                                <input class="form-control"  id="noticeperiod" name="noticeperiod" type="text" required>
+                            </div>
+                                <div class="form-group col-md-12">
+                                    <label for="" class="form-control-label">Description</label><span class="text-danger pl-1">*</span>
+                                <textarea class="form-control" name="description" id="description"   cols="50" rows="2" required></textarea>
+                            </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" >Create</button>
+                                    <button type="reset" class="btn btn-danger" onclick="cancel()">Cancel</button>
+                                </div>
+                        </div>
+                        
+                    </div>       
+                    </div>
+                </div>
+            </div>
+    </form>
+    {{ msg }}
+</div>
+{% endblock %}
