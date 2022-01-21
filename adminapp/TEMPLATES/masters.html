@@ -75,11 +75,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="" id="navbarDropdownProfile" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <!-- <i class="material-icons" id="p">person</i> -->
+                               
                                 <i class='fas fa-user-cog' style='font-size:20px' id="p"></i>
-                                <!-- <p class="d-lg d-md-block" id="p">
-                                    
-                                </p> -->
+                               
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                 <a class="dropdown-item" href="/adminapp/setting/">Settings</a>
@@ -248,9 +246,8 @@
              url:'/adminapp/masters/',
              type:'GET',
              success:function(response){
-                 console.log(response.notify)
-                 console.log(response.user)
-                 $('#notify').text(response.notify)
+                 
+                //  $('#notify').text(response.notify)
                  $('#p').html(response.user)
              }
          })

@@ -229,7 +229,7 @@ def fncheckin(request):
         request.session['check'] = checkid.id
         print(checkid.id)
         return JsonResponse({'msg': "Saved Successfully"})
-    return render(request, 'dashboard.html', {'msg': "data not saved"})
+    return render(request, 'dashboard.html', {'msg': "Welcome"})
 
 
 def fncheckout(request):
@@ -252,7 +252,7 @@ def fncheckout(request):
         print(total)
         workinghours.objects.filter(
             id=logid).update(totalhours=t)
-        return JsonResponse({'msg': "Saved Successfully"})
+        return JsonResponse({'msg': "You have been checked out"})
     return render(request, 'dashboard.html', {'msg': "data not saved"})
 
 

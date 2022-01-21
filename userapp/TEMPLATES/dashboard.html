@@ -79,7 +79,7 @@
                                             fulldate=+year+'-'+month+'-'+day
                                             // alert(fulldate)
                                             time=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
-                                            alert(typeof(time)),
+                                            
                                             $.ajax({ 
                                                 url: '/user/getcheckin/',
                                                 type:'POST',
@@ -106,92 +106,6 @@
         </div>
     
         <div class="row" style="padding-top: 70px;">
-            <!-- <div class="col-lg-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Calender</h4>
-                    </div>
-                    <div class="widget box calendarChart">
-                        <div class="widget-header">
-                            
-                        </div>
-                        <div class="widget-content">
-                            <div id="chart_simple" class="chart">
-                                <table id="cphBody_Calendar" cellspacing="0" cellpadding="2" title="Calendar" style="border-color:White;border-width:1px;border-style:solid;width:100%;border-collapse:collapse;">
- <tr><td colspan="7" style="background-color:#F9F9F9;"><table cellspacing="0" style="width:100%;border-collapse:collapse;">
-    <tr><td style="width:15%;"><a href="" style="color:Black" title="Go to the previous month">&lt;</a></td>
-<td align="center" style="width:70%;">July 2021</td>
-<td align="right" style="width:15%;"><a href="" style="color:Black" title="Go to the next month">&gt;</a></td></tr>
-</table></td></tr>
-<tr>
-<th align="center" abbr="Sunday" scope="col">Sun</th>
-<th align="center" abbr="Monday" scope="col">Mon</th>
-<th align="center" abbr="Tuesday" scope="col">Tue</th>
-<th align="center" abbr="Wednesday" scope="col">Wed</th>
-<th align="center" abbr="Thursday" scope="col">Thu</th>
-<th align="center" abbr="Friday" scope="col">Fri</th>
-<th align="center" abbr="Saturday" scope="col">Sat</th>
-</tr>
-<tr>
-<td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title=""></a></td>
-<td align="center" style="width:14%;"><a href="" style="color:Black" title="June 28">28</a></td>
-<td align="center" style="width:14%;"><a href="" style="color:Black" title="June 29">29</a></td>
-<td align="center" style="width:14%;"><a href="" style="color:Black" title="June 30">30</a></td>
-<td align="center" style="width:14%;"><a href="" style="color:Black" title="July 1">1</a></td>
-<td align="center" style="width:14%;"><a href="" style="color:Black" title="July 2">2</a></td>
-<td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 3">3</a></td>
-</tr>
-<tr>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 4">4</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 5">5</a></td>
-    <td align="center" style="color:Red;width:14%;"><a href="" style="color:Red" title="July 6">6</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 7">7</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 8">8</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 9">9</a></td>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 10">10</a></td>
-   </tr>
-    <tr>
-        <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 11">11</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 12">12</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 13">13</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 14">14</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 15">15</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 16">16</a></td>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 17">17</a></td>
-   </tr>
-    <tr>
-        <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 18">18</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 19">19</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:red" title="July 20">20</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 21">21</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 22">22</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 23">23</a></td>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 24">24</a></td>
-   </tr>
-    <tr>
-        <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 25">25</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="July 26">26</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="July 27">27</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 28">28</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 29">29</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="July 30">30</a></td>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="July 31">31</a></td>
-    </tr>
-    <tr>
-        <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="August 1">1</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:Black" title="August 2">2</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="August 3">3</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="August 4">4</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="August 5">5</a></td>
-    <td align="center" style="width:14%;"><a href="" style="color:black" title="August 6">6</a></td>
-    <td align="center" style="color:Blue;width:14%;"><a href="" style="color:Blue" title="August 7">7</a></td>
-   </tr>
-   </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -210,16 +124,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                                                    <!-- <tr>
-                                        <td>Company Rules</td>
-                                        <td>July 30, 2021</td>
-                                        <td>4:30 PM</td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>New Technology</td>
-                                        <td>Aug 2, 2021</td>
-                                        <td>3:20 PM</td>
-                                    </tr> -->
+                                       
                                                                 </tbody>
                             </table>
                         </div>
@@ -242,7 +147,7 @@
                 });
                 
             time=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
-            alert(typeof(time)),
+           
             $.ajax({ 
                url: '/user/getcheckout/',
                type:'POST',
